@@ -156,23 +156,54 @@ section{padding:6.5rem 5%}
 .btn-proj svg{transition:transform .2s}
 .btn-proj:hover svg{transform:translate(2px,-2px)}
 
-/* DESIGN GALLERY */
+/* DESIGN — CASE STUDY CARDS */
 #design{background:var(--bg);border-top:1.5px solid var(--border)}
-.design-intro{font-size:1rem;line-height:1.85;color:var(--muted);max-width:560px;margin-bottom:1rem}
-.design-tabs{display:flex;gap:.6rem;margin-bottom:2.5rem;flex-wrap:wrap}
-.tab-btn{background:none;border:2px solid var(--border);border-radius:100px;padding:.48rem 1.15rem;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s}
-.tab-btn.active,.tab-btn:hover{background:var(--text);color:#fff;border-color:var(--text)}
-.design-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.gallery-item{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/5;cursor:pointer;background:var(--surface2)}
-.gallery-item img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s ease}
-.gallery-item:hover img{transform:scale(1.06)}
-.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem}
-.gallery-item:hover .gallery-overlay{opacity:1}
-.gallery-tag{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.3rem}
-.gallery-name{font-family:'Bricolage Grotesque',sans-serif;font-size:.9rem;font-weight:700;color:#fff;line-height:1.3}
-.gallery-hidden{display:none}
-.gallery-group{display:none}
-.gallery-group.active{display:contents}
+.design-intro{font-size:1rem;line-height:1.85;color:var(--muted);max-width:560px;margin-bottom:3.5rem}
+.cs-list{display:flex;flex-direction:column;gap:2rem}
+.cs-card{background:var(--white);border:1.5px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:box-shadow .25s,transform .25s}
+.cs-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.09);transform:translateY(-3px)}
+.cs-preview{background:var(--surface2);position:relative;min-height:260px;overflow:hidden}
+.cs-preview-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;height:100%;min-height:260px}
+.cs-preview-mosaic img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:6px}
+.cs-preview-mosaic img:first-child{grid-column:span 2;height:130px}
+.cs-preview-mosaic img:not(:first-child){height:100px}
+.cs-body{padding:2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.2rem}
+.cs-scope{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
+.cs-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.55rem;font-weight:800;color:var(--text);line-height:1.1;letter-spacing:-.02em;margin-bottom:.6rem}
+.cs-desc{font-size:.88rem;line-height:1.75;color:var(--muted);flex:1}
+.cs-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;flex-wrap:wrap;gap:.6rem}
+.cs-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.btn-cs{display:inline-flex;align-items:center;gap:.4rem;background:var(--text);color:#fff !important;text-decoration:none;border:none;border-radius:100px;padding:.6rem 1.3rem;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:background .2s,transform .2s;white-space:nowrap}
+.btn-cs:hover{background:var(--blue);transform:translateY(-1px)}
+.btn-cs svg{transition:transform .2s}
+.btn-cs:hover svg{transform:translateX(3px)}
+/* SLIDE PANEL */
+.cs-panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:599;opacity:0;pointer-events:none;transition:opacity .35s}
+.cs-panel-overlay.open{opacity:1;pointer-events:auto}
+.cs-panel{position:fixed;top:0;right:0;width:min(680px,100vw);height:100vh;background:var(--white);z-index:600;overflow-y:auto;transform:translateX(100%);transition:transform .42s cubic-bezier(.25,.46,.45,.94);box-shadow:-24px 0 64px rgba(0,0,0,.14)}
+.cs-panel.open{transform:translateX(0)}
+.cs-panel-inner{padding:2.5rem 2.5rem 4rem}
+.cs-panel-close{display:inline-flex;align-items:center;gap:.5rem;background:var(--surface);border:1.5px solid var(--border);border-radius:100px;padding:.5rem 1.1rem;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Manrope',sans-serif;margin-bottom:2.2rem;transition:background .2s,color .2s}
+.cs-panel-close:hover{background:var(--text);color:#fff;border-color:var(--text)}
+.cs-panel-label{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
+.cs-panel-title{font-family:'Bricolage Grotesque',sans-serif;font-size:2.2rem;font-weight:800;color:var(--text);line-height:1.05;letter-spacing:-.025em;margin-bottom:2rem}
+.cs-panel-h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.01em;margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1.5px solid var(--border)}
+.cs-panel-p{font-size:.9rem;line-height:1.8;color:var(--muted);margin-bottom:1.5rem}
+.cs-panel-p strong{color:var(--text)}
+.cs-panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem}
+.cs-panel-img{border-radius:14px;overflow:hidden;background:var(--surface2)}
+.cs-panel-img img{width:100%;display:block;object-fit:cover;transition:transform .35s}
+.cs-panel-img:hover img{transform:scale(1.03)}
+.cs-panel-img.wide{grid-column:span 2}
+.cs-panel-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem}
+@media(max-width:900px){
+  .cs-card{grid-template-columns:1fr}
+  .cs-preview-mosaic{min-height:200px}
+  .cs-panel-inner{padding:1.5rem 1.5rem 3rem}
+  .cs-panel-title{font-size:1.7rem}
+  .cs-panel-grid{grid-template-columns:1fr}
+  .cs-panel-img.wide{grid-column:span 1}
+}
 
 /* CONTACT */
 #contact{background:var(--text);color:#fff;text-align:center;border-top:1.5px solid var(--border)}
@@ -187,27 +218,6 @@ footer{padding:1.6rem 5%;border-top:1px solid rgba(255,255,255,.08);display:flex
 .footer-copy,.footer-stack{font-size:.73rem;color:rgba(255,255,255,.28)}
 .footer-stack span{color:var(--blue-mid)}
 
-/* MODALS */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease}
-.modal-overlay.open{opacity:1;pointer-events:auto}
-.modal-box{background:var(--white);border-radius:24px;border:1.5px solid var(--border);width:100%;max-width:860px;max-height:88vh;overflow-y:auto;padding:2.5rem;position:relative;transform:translateY(16px);transition:transform .3s ease}
-.modal-overlay.open .modal-box{transform:translateY(0)}
-.modal-close{position:absolute;top:1.3rem;right:1.3rem;background:var(--surface);border:1.5px solid var(--border);border-radius:100px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;color:var(--muted);transition:background .2s,color .2s}
-.modal-close:hover{background:var(--text);color:#fff}
-.modal-client-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
-.modal-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:2rem;letter-spacing:-.02em}
-.modal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.1rem}
-.modal-piece{background:var(--bg);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
-.modal-piece:hover{border-color:rgba(37,99,235,.3);box-shadow:0 8px 24px rgba(0,0,0,.07)}
-.modal-thumb{height:200px;overflow:hidden;background:var(--surface)}
-.modal-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s}
-.modal-piece:hover .modal-thumb img{transform:scale(1.04)}
-.modal-piece-info{padding:1.1rem}
-.modal-piece-name{font-family:'Bricolage Grotesque',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.modal-piece-desc{font-size:.77rem;color:var(--muted);line-height:1.65;margin-bottom:.75rem}
-.modal-piece-desc strong{color:var(--text);font-weight:700}
-.modal-piece-tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.modal-piece-tags .p-tag{font-size:.6rem}
 
 /* REVEAL */
 .reveal{transition:opacity .65s cubic-bezier(.25,.46,.45,.94),transform .65s cubic-bezier(.25,.46,.45,.94)}
@@ -421,46 +431,87 @@ footer{padding:1.6rem 5%;border-top:1px solid rgba(255,255,255,.08);display:flex
 <section id="design">
   <div class="section-label">04 — Graphic Design</div>
   <h2 class="section-title">Visual Work</h2>
-  <p class="design-intro">Visual communication across campus organisations and independent clients — social media campaigns, product advertising, infographics, and brand identity work.</p>
-  <div class="design-tabs">
-    <button class="tab-btn active" onclick="filterGallery('all', this)">All Work</button>
-    <button class="tab-btn" onclick="filterGallery('dlcf', this)">DLCF FUPRE</button>
-    <button class="tab-btn" onclick="filterGallery('dsn', this)">DSN FUPRE</button>
-    <button class="tab-btn" onclick="filterGallery('freelance', this)">Freelance</button>
-  </div>
-  <div class="design-gallery" id="designGallery">
-    <div class="gallery-item" data-group="dlcf" onclick="openModal('dlcf')">
-      <img src="dlcf-stay-grounded.jpg" alt="Stay Grounded Campaign">
-      <div class="gallery-overlay"><div class="gallery-tag">DLCF · Campaign</div><div class="gallery-name">Stay Grounded Motivational</div></div>
+  <p class="design-intro">Visual communication across campus organisations and independent clients — social media campaigns, infographics, and brand identity work. Each project had a brief, a problem, and a designed solution.</p>
+  <div class="cs-list">
+
+    <!-- DLCF -->
+    <div class="cs-card reveal" onclick="openPanel('dlcf')">
+      <div class="cs-preview">
+        <div class="cs-preview-mosaic">
+          <img src="dlcf-stay-grounded.jpg" alt="Stay Grounded">
+          <img src="dlcf-before-class.jpg" alt="Before Class">
+          <img src="dlcf-faq.jpg" alt="Academic FAQ">
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-scope">DLCF FUPRE &middot; Academic Unit Designer</div>
+          <div class="cs-title">DLCF Design Work</div>
+          <p class="cs-desc">A series of student-focused social media content — motivation campaigns, academic infographics, and quote series designed to keep FUPRE students engaged, grounded, and showing up.</p>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-tags">
+            <span class="p-tag">Campaign Design</span>
+            <span class="p-tag">Infographic</span>
+            <span class="p-tag">Canva</span>
+          </div>
+          <button class="btn-cs">View Project <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M4 2l6 4-6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="gallery-item" data-group="dlcf" onclick="openModal('dlcf')">
-      <img src="dlcf-before-class.jpg" alt="Before Class Checklist">
-      <div class="gallery-overlay"><div class="gallery-tag">DLCF · Infographic</div><div class="gallery-name">Before-Class Checklist</div></div>
+
+    <!-- DSN -->
+    <div class="cs-card reveal" onclick="openPanel('dsn')">
+      <div class="cs-preview">
+        <div class="cs-preview-mosaic">
+          <img src="dsn-holiday.webp" alt="DSN Holiday Campaign">
+          <img src="dsn-holiday.webp" alt="DSN Campaign">
+          <img src="dsn-holiday.webp" alt="DSN Campaign 2">
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-scope">DSN FUPRE &middot; Chapter Lead</div>
+          <div class="cs-title">DSN FUPRE Design Work</div>
+          <p class="cs-desc">Recruitment and engagement visuals for the Data Scientists Network FUPRE chapter — built to grow chapter membership, drive WhatsApp onboarding, and communicate a tech-forward campus identity.</p>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-tags">
+            <span class="p-tag">Recruitment</span>
+            <span class="p-tag">Campaign</span>
+            <span class="p-tag">Canva</span>
+          </div>
+          <button class="btn-cs">View Project <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M4 2l6 4-6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="gallery-item" data-group="dlcf" onclick="openModal('dlcf')">
-      <img src="dlcf-faq.jpg" alt="Academic FAQ Series">
-      <div class="gallery-overlay"><div class="gallery-tag">DLCF · FAQ Series</div><div class="gallery-name">Academic FAQ Series</div></div>
+
+    <!-- FREELANCE -->
+    <div class="cs-card reveal" onclick="openPanel('freelance')">
+      <div class="cs-preview">
+        <div class="cs-preview-mosaic">
+          <img src="aeropure.jpg" alt="AeroPure Mini">
+          <img src="emily-glam.png" alt="Emily Glam">
+          <img src="aeropure.jpg" alt="AeroPure Detail">
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-scope">Freelance &middot; Independent Clients</div>
+          <div class="cs-title">Freelance Design Work</div>
+          <p class="cs-desc">Product advertising and brand identity work for independent clients — a smart air purifier launch ad and a beauty studio brand flyer, each built to communicate value and drive action.</p>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-tags">
+            <span class="p-tag">Brand Identity</span>
+            <span class="p-tag">Product Ad</span>
+            <span class="p-tag">Adobe Illustrator</span>
+          </div>
+          <button class="btn-cs">View Project <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M4 2l6 4-6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="gallery-item" data-group="dlcf" onclick="openModal('dlcf')">
-      <img src="dlcf-quote2.jpg" alt="Motivational Quote Vol 1">
-      <div class="gallery-overlay"><div class="gallery-tag">DLCF · Quote Design</div><div class="gallery-name">Quote Series Vol. 1</div></div>
-    </div>
-    <div class="gallery-item" data-group="dlcf" onclick="openModal('dlcf')">
-      <img src="dlcf-quote1.jpg" alt="Motivational Quote Vol 2">
-      <div class="gallery-overlay"><div class="gallery-tag">DLCF · Quote Design</div><div class="gallery-name">Quote Series Vol. 2</div></div>
-    </div>
-    <div class="gallery-item" data-group="dsn" onclick="openModal('dsn')">
-      <img src="dsn-holiday.webp" alt="DSN Holiday Campaign">
-      <div class="gallery-overlay"><div class="gallery-tag">DSN · Recruitment</div><div class="gallery-name">Holiday Skill-Up Campaign</div></div>
-    </div>
-    <div class="gallery-item" data-group="freelance" onclick="openModal('freelance')">
-      <img src="aeropure.jpg" alt="AeroPure Mini">
-      <div class="gallery-overlay"><div class="gallery-tag">Freelance · Product Ad</div><div class="gallery-name">AeroPure Mini Launch</div></div>
-    </div>
-    <div class="gallery-item" data-group="freelance" onclick="openModal('freelance')">
-      <img src="emily-glam.png" alt="Emily Glam Studio">
-      <div class="gallery-overlay"><div class="gallery-tag">Freelance · Brand</div><div class="gallery-name">Emily Glam Studio</div></div>
-    </div>
+
   </div>
 </section>
 
@@ -482,39 +533,89 @@ footer{padding:1.6rem 5%;border-top:1px solid rgba(255,255,255,.08);display:flex
   <span class="footer-stack">Built with <span>HTML &middot; CSS &middot; JS</span></span>
 </footer>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="modal-dlcf">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('dlcf')">&#10005;</button>
-    <div class="modal-client-label">DLCF FUPRE &middot; Academic Unit Designer</div>
-    <h2 class="modal-title">DLCF Design Work</h2>
-    <div class="modal-grid">
-      <div class="modal-piece"><div class="modal-thumb"><img src="dlcf-stay-grounded.jpg" alt="Stay Grounded"></div><div class="modal-piece-info"><div class="modal-piece-name">Stay Grounded Campaign</div><p class="modal-piece-desc"><strong>Problem:</strong> Students needed motivation during high-pressure exam periods. <strong>Solution:</strong> Bold typographic campaign with orange/navy identity. High-contrast layouts built for Instagram shareability.</p><div class="modal-piece-tags"><span class="p-tag">Campaign Design</span><span class="p-tag">Canva</span></div></div></div>
-      <div class="modal-piece"><div class="modal-thumb"><img src="dlcf-before-class.jpg" alt="Before Class"></div><div class="modal-piece-info"><div class="modal-piece-name">Before-Class Checklist</div><p class="modal-piece-desc"><strong>Problem:</strong> Students arrived unprepared. <strong>Solution:</strong> Checklist infographic with tilted notepad motif — part of a recurring #Dailyacademictips series.</p><div class="modal-piece-tags"><span class="p-tag">Infographic</span><span class="p-tag">Canva</span></div></div></div>
-      <div class="modal-piece"><div class="modal-thumb"><img src="dlcf-faq.jpg" alt="FAQ Series"></div><div class="modal-piece-info"><div class="modal-piece-name">Academic FAQ Series</div><p class="modal-piece-desc"><strong>Problem:</strong> Students rationalise skipping class. <strong>Solution:</strong> Conversational Q&amp;A with yellow pill labels — non-preachy, answering real objections with logic.</p><div class="modal-piece-tags"><span class="p-tag">Infographic</span><span class="p-tag">Canva</span></div></div></div>
-      <div class="modal-piece"><div class="modal-thumb"><img src="dlcf-quote2.jpg" alt="Quote Vol 1"></div><div class="modal-piece-info"><div class="modal-piece-name">Quote Series — Vol. 1</div><p class="modal-piece-desc"><strong>Solution:</strong> Frosted glass card on a study-desk background — Lincoln &amp; Collier quotes with orange pill keyword highlight for instant eye-draw.</p><div class="modal-piece-tags"><span class="p-tag">Quote Design</span><span class="p-tag">Canva</span></div></div></div>
-      <div class="modal-piece"><div class="modal-thumb"><img src="dlcf-quote1.jpg" alt="Quote Vol 2"></div><div class="modal-piece-info"><div class="modal-piece-name">Quote Series — Vol. 2</div><p class="modal-piece-desc"><strong>Solution:</strong> Same frosted glass system reinforces visual language — makes the series instantly identifiable in a student's feed.</p><div class="modal-piece-tags"><span class="p-tag">Quote Design</span><span class="p-tag">Canva</span></div></div></div>
+<!-- PANEL OVERLAY -->
+<div class="cs-panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+
+<!-- PANEL: DLCF -->
+<div class="cs-panel" id="panel-dlcf">
+  <div class="cs-panel-inner">
+    <button class="cs-panel-close" onclick="closePanel()">&#8592; Back</button>
+    <div class="cs-panel-label">DLCF FUPRE &middot; Academic Unit Designer</div>
+    <div class="cs-panel-title">DLCF Design Work</div>
+    <div class="cs-panel-h3">The Brief</div>
+    <p class="cs-panel-p">DLCF FUPRE needed consistent, well-designed social media content to keep students engaged academically — especially during high-pressure exam seasons. The audience: undergraduates who needed motivation without feeling lectured.</p>
+    <div class="cs-panel-h3">Problem &amp; Approach</div>
+    <p class="cs-panel-p"><strong>Problem:</strong> Generic motivational posts get scrolled past. Students needed content that felt real, specific to campus life, and visually sharp enough to share. <strong>Approach:</strong> Built a recurring content system — a motivation campaign, a practical checklist series, a conversational FAQ format, and a quote series — each with a distinct visual identity that still felt like one brand.</p>
+    <div class="cs-panel-grid">
+      <div class="cs-panel-img wide"><img src="dlcf-stay-grounded.jpg" alt="Stay Grounded Campaign"></div>
+      <div class="cs-panel-img"><img src="dlcf-before-class.jpg" alt="Before Class Checklist"></div>
+      <div class="cs-panel-img"><img src="dlcf-faq.jpg" alt="Academic FAQ Series"></div>
+      <div class="cs-panel-img"><img src="dlcf-quote2.jpg" alt="Quote Series Vol 1"></div>
+      <div class="cs-panel-img"><img src="dlcf-quote1.jpg" alt="Quote Series Vol 2"></div>
+    </div>
+    <div class="cs-panel-h3">Pieces &amp; Solutions</div>
+    <p class="cs-panel-p"><strong>Stay Grounded Campaign:</strong> Bold typographic design with orange/navy identity, built for Instagram shareability during exam pressure periods.<br><br><strong>Before-Class Checklist:</strong> Tilted notepad motif infographic — part of the recurring #Dailyacademictips series to encourage student preparation.<br><br><strong>Academic FAQ Series:</strong> Conversational Q&amp;A with yellow pill labels — non-preachy, answering real objections students use to justify skipping class.<br><br><strong>Quote Series (Vol. 1 &amp; 2):</strong> Frosted glass cards on study-desk backgrounds with keyword highlights — instantly identifiable in a student's feed.</p>
+    <div class="cs-panel-h3">Tools Used</div>
+    <div class="cs-panel-tags">
+      <span class="p-tag">Canva</span>
+      <span class="p-tag">Campaign Design</span>
+      <span class="p-tag">Infographic</span>
+      <span class="p-tag">Quote Design</span>
+      <span class="p-tag">Social Media</span>
     </div>
   </div>
 </div>
-<div class="modal-overlay" id="modal-dsn">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('dsn')">&#10005;</button>
-    <div class="modal-client-label">DSN FUPRE &middot; Chapter Lead</div>
-    <h2 class="modal-title">DSN Design Work</h2>
-    <div class="modal-grid">
-      <div class="modal-piece"><div class="modal-thumb"><img src="dsn-holiday.webp" alt="Holiday Campaign"></div><div class="modal-piece-info"><div class="modal-piece-name">Holiday Skill-Up Campaign</div><p class="modal-piece-desc"><strong>Problem:</strong> Students disengage during semester breaks. <strong>Solution:</strong> Vibrant flyer in Nigeria's green-white palette with tech iconography. QR code CTA linked to WhatsApp — enabling trackable chapter growth.</p><div class="modal-piece-tags"><span class="p-tag">Campaign</span><span class="p-tag">Recruitment</span></div></div></div>
+
+<!-- PANEL: DSN -->
+<div class="cs-panel" id="panel-dsn">
+  <div class="cs-panel-inner">
+    <button class="cs-panel-close" onclick="closePanel()">&#8592; Back</button>
+    <div class="cs-panel-label">DSN FUPRE &middot; Chapter Lead</div>
+    <div class="cs-panel-title">DSN FUPRE Design Work</div>
+    <div class="cs-panel-h3">The Brief</div>
+    <p class="cs-panel-p">As Chapter Lead of the Data Scientists Network at FUPRE, I needed to design visuals that would attract new members, communicate what DSN does, and turn passive students into active community members — especially during semester breaks when engagement typically drops.</p>
+    <div class="cs-panel-h3">Problem &amp; Approach</div>
+    <p class="cs-panel-p"><strong>Problem:</strong> Students disengage from tech communities during breaks. Recruitment visuals need to be bold enough to stop the scroll and clear enough to drive a single action — join the WhatsApp group. <strong>Approach:</strong> Nigeria's green-white palette mixed with tech iconography to signal credibility. QR code CTA linked directly to WhatsApp for trackable, frictionless onboarding.</p>
+    <div class="cs-panel-grid">
+      <div class="cs-panel-img wide"><img src="dsn-holiday.webp" alt="DSN Holiday Skill-Up Campaign"></div>
+    </div>
+    <div class="cs-panel-h3">Result</div>
+    <p class="cs-panel-p"><strong>Holiday Skill-Up Campaign:</strong> Vibrant flyer designed to keep the DSN community active during semester breaks — tech iconography, green-white national palette, and a direct QR code CTA that drove WhatsApp group joins and enabled trackable chapter growth.</p>
+    <div class="cs-panel-h3">Tools Used</div>
+    <div class="cs-panel-tags">
+      <span class="p-tag">Canva</span>
+      <span class="p-tag">Campaign Design</span>
+      <span class="p-tag">Recruitment</span>
+      <span class="p-tag">Community Growth</span>
     </div>
   </div>
 </div>
-<div class="modal-overlay" id="modal-freelance">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('freelance')">&#10005;</button>
-    <div class="modal-client-label">Freelance &middot; Independent Clients</div>
-    <h2 class="modal-title">Freelance Design Work</h2>
-    <div class="modal-grid">
-      <div class="modal-piece"><div class="modal-thumb"><img src="aeropure.jpg" alt="AeroPure Mini"></div><div class="modal-piece-info"><div class="modal-piece-name">AeroPure Mini — Product Launch Ad</div><p class="modal-piece-desc"><strong>Problem:</strong> Smart air purifier needed a single-frame ad communicating value and urgency. <strong>Solution:</strong> Teal/mint palette, three-column feature callouts, lung illustration overlay, urgency CTA.</p><div class="modal-piece-tags"><span class="p-tag">Product Ad</span><span class="p-tag">Adobe Illustrator</span></div></div></div>
-      <div class="modal-piece"><div class="modal-thumb"><img src="emily-glam.png" alt="Emily Glam"></div><div class="modal-piece-info"><div class="modal-piece-name">Emily Glam Studio — Brand Flyer</div><p class="modal-piece-desc"><strong>Problem:</strong> New Lagos beauty studio needed a launch flyer communicating luxury and approachability. <strong>Solution:</strong> Warm golden palette, oversized serif, frosted card overlay, light-leak photography.</p><div class="modal-piece-tags"><span class="p-tag">Brand Identity</span><span class="p-tag">Print Design</span></div></div></div>
+
+<!-- PANEL: FREELANCE -->
+<div class="cs-panel" id="panel-freelance">
+  <div class="cs-panel-inner">
+    <button class="cs-panel-close" onclick="closePanel()">&#8592; Back</button>
+    <div class="cs-panel-label">Freelance &middot; Independent Clients</div>
+    <div class="cs-panel-title">Freelance Design Work</div>
+    <div class="cs-panel-h3">The Brief</div>
+    <p class="cs-panel-p">Two independent client projects: a product launch ad for a smart air purifier, and a brand flyer for a new Lagos beauty studio. Both needed designs that would communicate value instantly and drive the audience to take action.</p>
+    <div class="cs-panel-h3">AeroPure Mini — Product Launch Ad</div>
+    <p class="cs-panel-p"><strong>Problem:</strong> A smart air purifier needed a single-frame ad that communicates features, quality, and urgency without overwhelming the viewer. <strong>Solution:</strong> Teal/mint palette, three-column feature callouts, lung illustration overlay, and an urgency-driven CTA — all in a composition built for Instagram and print.</p>
+    <div class="cs-panel-grid">
+      <div class="cs-panel-img wide"><img src="aeropure.jpg" alt="AeroPure Mini Launch Ad"></div>
+    </div>
+    <div class="cs-panel-h3">Emily Glam Studio — Brand Flyer</div>
+    <p class="cs-panel-p"><strong>Problem:</strong> A new Lagos beauty studio needed a launch flyer that reads as luxury without feeling cold — approachable and aspirational at the same time. <strong>Solution:</strong> Warm golden palette, oversized serif typography, frosted card overlay with service listing, and a light-leak photography treatment that elevates the visual without extra photography budget.</p>
+    <div class="cs-panel-grid">
+      <div class="cs-panel-img wide"><img src="emily-glam.png" alt="Emily Glam Studio Brand Flyer"></div>
+    </div>
+    <div class="cs-panel-h3">Tools Used</div>
+    <div class="cs-panel-tags">
+      <span class="p-tag">Adobe Illustrator</span>
+      <span class="p-tag">Canva</span>
+      <span class="p-tag">Product Ad</span>
+      <span class="p-tag">Brand Identity</span>
+      <span class="p-tag">Print Design</span>
     </div>
   </div>
 </div>
@@ -524,11 +625,18 @@ window.addEventListener('scroll',()=>{document.getElementById('navbar').classLis
 function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open')}
 const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){const siblings=Array.from(e.target.parentElement.querySelectorAll('.reveal'));const idx=siblings.indexOf(e.target);setTimeout(()=>{e.target.classList.add('visible')},idx*90);obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-function openModal(id){const el=document.getElementById('modal-'+id);if(el){el.classList.add('open');document.body.style.overflow='hidden'}}
-function closeModal(id){const el=document.getElementById('modal-'+id);if(el){el.classList.remove('open');document.body.style.overflow=''}}
-document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('open');document.body.style.overflow=''}})});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(el=>{el.classList.remove('open');document.body.style.overflow=''})});
-function filterGallery(group, btn){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.gallery-item').forEach(it
+function openPanel(id){
+  document.querySelectorAll('.cs-panel').forEach(p=>p.classList.remove('open'));
+  const panel=document.getElementById('panel-'+id);
+  const overlay=document.getElementById('panelOverlay');
+  if(panel){panel.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';panel.scrollTop=0;}
+}
+function closePanel(){
+  document.querySelectorAll('.cs-panel').forEach(p=>p.classList.remove('open'));
+  document.getElementById('panelOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+</script>
+</body>
+</html>
