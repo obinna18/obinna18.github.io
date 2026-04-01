@@ -2061,8 +2061,6 @@ footer{
 </div>
 
 <!-- FOOTER -->
-
-
 <script>
 var html = document.documentElement;
 var tb = document.getElementById('themeBtn');
@@ -2073,7 +2071,7 @@ function syncThemeBtn(isLight){
 }
 (function(){
   var s = localStorage.getItem('oe-theme');
-  if(s === 'light'){ html.setAttribute('data-theme','light'); syncThemeBtn(false); }
+  if(s === 'light'){ html.setAttribute('data-theme','light'); syncThemeBtn(true); }
 })();
 function toggleTheme(){
   var light = html.getAttribute('data-theme') === 'light';
@@ -2088,29 +2086,13 @@ var progressBar = document.getElementById('scroll-progress');
 window.addEventListener('scroll', function(){
   if(progressBar){
     var pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = Math.min(pct, 100) + '%';
+    progressBar.style.width = Math.min(pct,100) + '%';
   }
-},{passive:true});
-
-// MAGNETIC TILT ON CARDS
-document.querySelectorAll('.proj-card,.cs-card').forEach(function(card){
-  card.addEventListener('mousemove', function(e){
-    var r = card.getBoundingClientRect();
-    var x = e.clientX - r.left - r.width/2;
-    var y = e.clientY - r.top - r.height/2;
-    card.style.transform = 'translateY(-6px) rotateX('+ (-y/r.height*5) +'deg) rotateY('+ (x/r.width*5) +'deg)';
-  });
-  card.addEventListener('mouseleave', function(){
-    card.style.transform = '';
-    card.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94)';
-  });
-});
-
-window.addEventListener('scroll', function(){
   var nb = document.getElementById('navbar');
   if(nb) nb.classList.toggle('scrolled', window.scrollY > 50);
 },{passive:true});
 
+// MOBILE MENU
 var mob = document.getElementById('mobMenu');
 var ham = document.getElementById('hamBtn');
 if(ham && mob){
@@ -2124,6 +2106,7 @@ function closeMob(){
   if(ham) ham.classList.remove('open');
 }
 
+// FILTER TABS
 document.querySelectorAll('.ftab').forEach(function(btn){
   btn.addEventListener('click', function(){
     document.querySelectorAll('.ftab').forEach(function(b){ b.classList.remove('active'); });
@@ -2136,6 +2119,7 @@ document.querySelectorAll('.ftab').forEach(function(btn){
   });
 });
 
+// PANELS
 function openPanel(key){
   closePanel();
   var p = document.getElementById('panel-' + key);
@@ -2143,22 +2127,21 @@ function openPanel(key){
   if(p){ p.classList.add('open'); if(o) o.classList.add('open'); document.body.style.overflow='hidden'; p.scrollTop=0; }
 }
 function openDesignPanel(key){ openPanel(key); }
-function switchTab(panelId, tabIndex){
-  var panel = document.getElementById(panelId);
-  if(!panel) return;
-  var tabs = panel.querySelectorAll('.cp-tab');
-  var panes = panel.querySelectorAll('.cp-pane');
-  tabs.forEach(function(t,i){ t.classList.toggle('active', i===tabIndex); });
-  panes.forEach(function(p,i){ p.classList.toggle('active', i===tabIndex); });
-}
 function closePanel(){
   document.querySelectorAll('.side-panel').forEach(function(p){ p.classList.remove('open'); });
   var o = document.getElementById('panelOverlay');
   if(o) o.classList.remove('open');
   document.body.style.overflow='';
 }
+function switchTab(panelId, tabIndex){
+  var panel = document.getElementById(panelId);
+  if(!panel) return;
+  panel.querySelectorAll('.cp-tab').forEach(function(t,i){ t.classList.toggle('active', i===tabIndex); });
+  panel.querySelectorAll('.cp-pane').forEach(function(p,i){ p.classList.toggle('active', i===tabIndex); });
+}
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePanel(); });
 
+// CONTACT FORM
 async function sendForm(){
   var btn = document.getElementById('sendBtn');
   var msg = document.getElementById('formMsg');
@@ -2174,54 +2157,58 @@ async function sendForm(){
   try{
     await emailjs.send('service_pre5nt1','template_uxkpqyo',{from_name:name,from_email:email,subject:subject||'Portfolio Contact',message:message,to_email:'preciousobinna260@gmail.com'});
     msg.textContent='Message sent! I will get back to you soon.'; msg.className='form-msg ok';
-    ['cf-name','cf-email','cf-subject','cf-message'].forEach(function(id){ document.getElementId(id).value=''; });
+    ['cf-name','cf-email','cf-subject','cf-message'].forEach(function(id){ document.getElementById(id).value=''; });
   }catch(err){
     msg.textContent='Something went wrong. Email me at preciousobinna260@gmail.com'; msg.className='form-msg err';
   }finally{
-    btn.disabled=false;
-    btn.innerHTML='Send Message';
+    btn.disabled=false; btn.innerHTML='Send Message';
   }
 }
 
+// MAGNETIC CARD TILT
+document.querySelectorAll('.proj-card,.cs-card').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var r = card.getBoundingClientRect();
+    var x = e.clientX - r.left - r.width/2;
+    var y = e.clientY - r.top - r.height/2;
+    card.style.transform = 'translateY(-6px) rotateX('+(-y/r.height*5)+'deg) rotateY('+(x/r.width*5)+'deg)';
+  });
+  card.addEventListener('mouseleave', function(){
+    card.style.transform = '';
+  });
+});
+
+// EMAILJS
 try{ emailjs.init('IlCzu-AWbCnbxbU0f'); }catch(e){}
 
+// SCROLL REVEAL — repeats every time element enters/leaves viewport
 if('IntersectionObserver' in window){
-  // Step 1: hide all reveal elements immediately
-  document.documentElement.classList.add('js-reveal-ready');
-
-  // Step 2: wait two frames so browser paints them hidden BEFORE we start observing
   requestAnimationFrame(function(){
     requestAnimationFrame(function(){
-
-      var revealObserver = new IntersectionObserver(function(entries){
+      document.documentElement.classList.add('js-reveal-ready');
+      var ro = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
+          var el = entry.target;
+          var siblings = Array.from(el.parentElement.querySelectorAll('.reveal'));
+          var idx = siblings.indexOf(el);
+          var isCard = el.classList.contains('proj-card') || el.classList.contains('cs-card');
           if(entry.isIntersecting){
-            var el = entry.target;
-            // Stagger siblings
-            var siblings = Array.from(el.parentElement.querySelectorAll('.reveal'));
-            var idx = siblings.indexOf(el);
-            var isCard = el.classList.contains('proj-card') || el.classList.contains('cs-card');
-            el.style.transitionDelay = isCard ? (idx * 0.15) + 's' : (idx * 0.1) + 's';
+            el.style.transitionDelay = isCard ? (idx*0.15)+'s' : (idx*0.1)+'s';
             el.classList.add('visible');
-            revealObserver.unobserve(el);
+          } else {
+            el.style.transitionDelay = '0s';
+            el.classList.remove('visible');
           }
         });
       },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
-
-      document.querySelectorAll('.reveal').forEach(function(el){
-        revealObserver.observe(el);
-      });
-
-      // Fallback: force show anything still hidden after 6s
+      document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
       setTimeout(function(){
         document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
-          el.style.transitionDelay = '0s';
-          el.classList.add('visible');
+          el.style.transitionDelay='0s'; el.classList.add('visible');
         });
-      }, 6000);
-
-    }); // end second rAF
-  }); // end first rAF
+      },6000);
+    });
+  });
 }
 </script>
 </body>
