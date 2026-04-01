@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Obinna Egenti | Product Builder & Developer</title>
+<title>Obinna Egenti | Software Developer & Product Builder</title>
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1156,6 +1156,62 @@ footer{
   transform: scale(.97) !important;
 }
 
+
+/* ─── HOW I BUILD SECTION ─── */
+#how-i-build {
+  background: var(--bg2);
+  border-top: 1.5px solid var(--border);
+}
+.hib-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 16px;
+}
+.hib-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+.hib-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+}
+.hib-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--blue);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94);
+}
+.hib-card:hover::before { transform: scaleX(1); }
+.hib-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3rem; font-weight: 800;
+  color: var(--blue); opacity: .15;
+  line-height: 1; margin-bottom: 16px;
+  letter-spacing: -.04em;
+}
+.hib-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--text); margin-bottom: 10px;
+  letter-spacing: -.015em;
+}
+.hib-desc {
+  font-size: .88rem; line-height: 1.85;
+  color: var(--muted);
+}
+.hib-desc strong { color: var(--text); font-weight: 700; }
+@media(max-width:680px){
+  .hib-grid { grid-template-columns: 1fr; gap: 14px; }
+  .hib-card { padding: 24px 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -1205,8 +1261,9 @@ footer{
     </h1>
     <p class="hero-role-line">Product Builder &middot; CS @ FUPRE &middot; Lagos, NG</p>
     <p class="hero-desc">
-      I build <strong>AI-backed tools and apps</strong> that ship to real users.
-      Android. Firebase. Web. <strong>From campus, to production.</strong>
+      I design and ship <strong>scalable applications from concept to production</strong> —
+      combining AI, Android, and cloud infrastructure to solve problems
+      for <strong>real users, real clients, real markets.</strong>
     </p>
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">View My Work</a>
@@ -1259,7 +1316,7 @@ footer{
   <h2 class="sec-title reveal">I design, code,<br>and ship.</h2>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I'm a <strong>300-level CS student</strong> at FUPRE, Effurun, expected to graduate 2027. I build across the full stack with focus on <strong>Android, Firebase web apps, and AI-assisted tools</strong>.</p>
+      <p>I'm a <strong>CS student</strong> at FUPRE, Effurun, expected to graduate 2027. I build across the full stack with focus on <strong>Android, Firebase web apps, and AI-assisted tools</strong>.</p>
       <p>As <strong>DSN FUPRE Chapter Lead</strong>, I'm growing a data science community on campus — I was recommended by the outgoing lead, went through screening, and now lead the chapter alongside a co-lead. As a <strong>Cowrywise Campus Rep</strong>, I drive fintech adoption among students.</p>
       <p>Long-term goal: build <strong>Cionti</strong>, a skill-based local connection platform, into a profitable product by 2030. I leverage <strong>AI-assisted workflows</strong> to ship faster without losing code ownership.</p>
     </div>
@@ -1297,6 +1354,35 @@ footer{
 </section>
 
 <!-- PROJECTS -->
+
+<!-- HOW I BUILD -->
+<section id="how-i-build">
+  <div class="sec-label reveal">Process</div>
+  <h2 class="sec-title reveal">How I build.</h2>
+  <div class="hib-grid">
+    <div class="hib-card reveal from-left">
+      <div class="hib-num">01</div>
+      <div class="hib-title">Define the problem before writing code</div>
+      <p class="hib-desc">Every project starts with a specific, measurable gap. Not "I want to build an app" — but <strong>why this problem, why now, and why are existing solutions failing the people who have it.</strong> The build only starts when the problem is precise.</p>
+    </div>
+    <div class="hib-card reveal from-right">
+      <div class="hib-num">02</div>
+      <div class="hib-title">Design for the constraint, not the ideal</div>
+      <p class="hib-desc">Most of my users are on low-end Android devices with inconsistent connectivity. <strong>Architecture decisions are made for those users first,</strong> not for the demo environment. Leaflet over Google Maps. Firebase over custom backend. Speed and reliability over feature count.</p>
+    </div>
+    <div class="hib-card reveal from-left">
+      <div class="hib-num">03</div>
+      <div class="hib-title">Ship the MVP. Get real feedback.</div>
+      <p class="hib-desc">QUEVA launched with one core feature: PDF Q&A. <strong>24 users tested it on launch day.</strong> Their feedback — not assumptions — became the entire v2 roadmap. Waiting for perfection is how products die before they ship.</p>
+    </div>
+    <div class="hib-card reveal from-right">
+      <div class="hib-num">04</div>
+      <div class="hib-title">Understand what you ship</div>
+      <p class="hib-desc">I only use tools I can explain. If I integrate Firebase, I know why — not just how. <strong>Using AI to build faster does not mean shipping things I cannot debug or describe.</strong> That accountability is what makes the work credible and the iteration honest.</p>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="sec-label">Projects</div>
   <h2 class="sec-title reveal">Things I've built</h2>
@@ -1599,8 +1685,8 @@ footer{
   <div class="contact-grid">
     <div class="reveal">
       <div class="contact-label">Contact</div>
-      <h2 class="contact-title">Let's<br><span class="blue">Build.</span></h2>
-      <p class="contact-desc">Open to freelance projects, collaborations, and internship opportunities. Based in Lagos, Nigeria. Available remotely.</p>
+      <h2 class="contact-title">Let's<br><span class="blue">Work.</span></h2>
+      <p class="contact-desc">Available for internships, remote roles, and technical collaborations. Based in Lagos, Nigeria — building from campus, shipping to production.</p>
       <a href="mailto:preciousobinna260@gmail.com" class="contact-email-link">preciousobinna260@gmail.com</a>
       <div class="social-links">
         <a href="https://linkedin.com/in/obinnaegenti" target="_blank" class="social-link">
@@ -2081,7 +2167,6 @@ function toggleTheme(){
 }
 if(tb) tb.addEventListener('click', toggleTheme);
 
-// SCROLL PROGRESS
 var progressBar = document.getElementById('scroll-progress');
 window.addEventListener('scroll', function(){
   if(progressBar){
@@ -2092,7 +2177,6 @@ window.addEventListener('scroll', function(){
   if(nb) nb.classList.toggle('scrolled', window.scrollY > 50);
 },{passive:true});
 
-// MOBILE MENU
 var mob = document.getElementById('mobMenu');
 var ham = document.getElementById('hamBtn');
 if(ham && mob){
@@ -2106,7 +2190,6 @@ function closeMob(){
   if(ham) ham.classList.remove('open');
 }
 
-// FILTER TABS
 document.querySelectorAll('.ftab').forEach(function(btn){
   btn.addEventListener('click', function(){
     document.querySelectorAll('.ftab').forEach(function(b){ b.classList.remove('active'); });
@@ -2119,7 +2202,6 @@ document.querySelectorAll('.ftab').forEach(function(btn){
   });
 });
 
-// PANELS
 function openPanel(key){
   closePanel();
   var p = document.getElementById('panel-' + key);
@@ -2141,7 +2223,6 @@ function switchTab(panelId, tabIndex){
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePanel(); });
 
-// CONTACT FORM
 async function sendForm(){
   var btn = document.getElementById('sendBtn');
   var msg = document.getElementById('formMsg');
@@ -2150,7 +2231,7 @@ async function sendForm(){
   var subject = document.getElementById('cf-subject').value.trim();
   var message = document.getElementById('cf-message').value.trim();
   if(!name||!email||!message){ msg.textContent='Please fill in name, email and message.'; msg.className='form-msg err'; return; }
-  var emailRe = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailRe.test(email)){ msg.textContent='Please enter a valid email.'; msg.className='form-msg err'; return; }
   btn.disabled=true; btn.textContent='Sending...';
   msg.textContent=''; msg.className='form-msg';
@@ -2165,7 +2246,6 @@ async function sendForm(){
   }
 }
 
-// MAGNETIC CARD TILT
 document.querySelectorAll('.proj-card,.cs-card').forEach(function(card){
   card.addEventListener('mousemove', function(e){
     var r = card.getBoundingClientRect();
@@ -2178,10 +2258,8 @@ document.querySelectorAll('.proj-card,.cs-card').forEach(function(card){
   });
 });
 
-// EMAILJS
 try{ emailjs.init('IlCzu-AWbCnbxbU0f'); }catch(e){}
 
-// SCROLL REVEAL — repeats every time element enters/leaves viewport
 if('IntersectionObserver' in window){
   requestAnimationFrame(function(){
     requestAnimationFrame(function(){
@@ -2191,7 +2269,7 @@ if('IntersectionObserver' in window){
           var el = entry.target;
           var siblings = Array.from(el.parentElement.querySelectorAll('.reveal'));
           var idx = siblings.indexOf(el);
-          var isCard = el.classList.contains('proj-card') || el.classList.contains('cs-card');
+          var isCard = el.classList.contains('proj-card') || el.classList.contains('cs-card') || el.classList.contains('hib-card');
           if(entry.isIntersecting){
             el.style.transitionDelay = isCard ? (idx*0.15)+'s' : (idx*0.1)+'s';
             el.classList.add('visible');
@@ -2200,7 +2278,7 @@ if('IntersectionObserver' in window){
             el.classList.remove('visible');
           }
         });
-      },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+      },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
       document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
       setTimeout(function(){
         document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
