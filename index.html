@@ -785,12 +785,12 @@ footer{
 .foot-logo{
   font-family:'Bricolage Grotesque',sans-serif;
   font-size:1.2rem;font-weight:800;
-  color:rgba(255,255,255,.25);
+  color:var(--faint);
 }
 .foot-logo em{color:var(--blue);font-style:normal}
 .foot-copy{
   font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;color:rgba(255,255,255,.22);letter-spacing:.06em;
+  font-size:.62rem;color:var(--faint);letter-spacing:.06em;
 }
 
 /* ─── SCROLL REVEAL ─── */
@@ -1212,6 +1212,18 @@ footer{
   .hib-card { padding: 24px 20px; }
 }
 
+
+.foot-socials{display:flex;gap:12px;align-items:center}
+.foot-social-icon{
+  width:32px;height:32px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--faint);font-size:.75rem;font-weight:700;
+  transition:border-color .2s,color .2s,transform .2s;
+  text-decoration:none;font-family:'Manrope',sans-serif;
+}
+.foot-social-icon:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+
 </style>
 </head>
 <body>
@@ -1254,14 +1266,14 @@ footer{
   <div class="hero-left">
     <div class="hero-status">
       <span class="status-dot"></span>
-      Available — Freelance &amp; Internship
+      Available for Freelance &amp; Internship
     </div>
     <h1 class="hero-name">
       OBINNA<br><span class="blue">EGENTI.</span><span class="hero-cursor"></span>
     </h1>
     <p class="hero-role-line">Product Builder &middot; CS @ FUPRE &middot; Lagos, NG</p>
     <p class="hero-desc">
-      I design and ship <strong>scalable applications from concept to production</strong> —
+      I design and ship <strong>scalable applications from concept to production</strong>,
       combining AI, Android, and cloud infrastructure to solve problems
       for <strong>real users, real clients, real markets.</strong>
     </p>
@@ -1378,7 +1390,7 @@ footer{
     <div class="hib-card reveal from-right">
       <div class="hib-num">04</div>
       <div class="hib-title">Understand what you ship</div>
-      <p class="hib-desc">I only use tools I can explain. If I integrate Firebase, I know why — not just how. <strong>Using AI to build faster does not mean shipping things I cannot debug or describe.</strong> That accountability is what makes the work credible and the iteration honest.</p>
+      <p class="hib-desc">I approach tools experimentally, testing, breaking, and comparing solutions before committing. <strong>AI accelerates the process.</strong> I take full ownership of the technical decisions behind what I build.</p>
     </div>
   </div>
 </section>
@@ -1424,10 +1436,6 @@ footer{
       <div class="proj-card-foot">
         <span class="proj-foot-cta">View Case Study</span>
         <span class="proj-arrow">→</span>
-      </div>
-      <div class="featured-label-block">
-        <div class="fl-num">01</div>
-        <div class="fl-text">Flagship<br>Project</div>
       </div>
     </div>
 
@@ -1741,8 +1749,18 @@ footer{
 <footer>
   <div class="foot-row">
     <div class="foot-logo">OE<em>.</em></div>
-    <div class="foot-copy">© 2026 Obinna Egenti. All rights reserved.</div>
-    <div class="foot-copy">Built with HTML · CSS · JS</div>
+    <div class="foot-socials">
+      <a href="https://linkedin.com/in/obinnaegenti" target="_blank" class="foot-social-icon" title="LinkedIn">in</a>
+      <a href="https://github.com/obinna18" target="_blank" class="foot-social-icon" title="GitHub">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://kaggle.com/preciousobinna" target="_blank" class="foot-social-icon" title="Kaggle">Ka</a>
+      <a href="https://zindi.africa/users/obinna22" target="_blank" class="foot-social-icon" title="Zindi">Zi</a>
+      <a href="mailto:preciousobinna260@gmail.com" class="foot-social-icon" title="Email">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+    <div class="foot-copy">© 2026 Obinna Egenti · Built with HTML, CSS, JS</div>
   </div>
 </footer>
 
@@ -2231,7 +2249,7 @@ async function sendForm(){
   var subject = document.getElementById('cf-subject').value.trim();
   var message = document.getElementById('cf-message').value.trim();
   if(!name||!email||!message){ msg.textContent='Please fill in name, email and message.'; msg.className='form-msg err'; return; }
-  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var emailRe = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
   if(!emailRe.test(email)){ msg.textContent='Please enter a valid email.'; msg.className='form-msg err'; return; }
   btn.disabled=true; btn.textContent='Sending...';
   msg.textContent=''; msg.className='form-msg';
@@ -2278,7 +2296,7 @@ if('IntersectionObserver' in window){
             el.classList.remove('visible');
           }
         });
-      },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+      },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
       document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
       setTimeout(function(){
         document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
