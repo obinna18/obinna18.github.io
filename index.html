@@ -2303,7 +2303,8 @@ async function sendForm(){
     from_name: name,
     from_email: email,
     subject: subject || 'Portfolio Contact',
-    message: message
+    message: message,
+    to_email: 'preciousobinna260@gmail.com'
   };
 
   try{
@@ -2320,7 +2321,8 @@ async function sendForm(){
     });
   }catch(err){
     console.error('EmailJS error:', err);
-    msg.textContent='Something went wrong. Email me at preciousobinna260@gmail.com';
+    var detail = (err && err.text) ? ' (' + err.text + ')' : (err && err.status ? ' (status ' + err.status + ')' : '');
+    msg.textContent='Something went wrong' + detail + '. Email me at preciousobinna260@gmail.com';
     msg.className='form-msg err';
   }finally{
     btn.disabled=false;
