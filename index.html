@@ -1274,6 +1274,25 @@ footer{
   transition: opacity .2s;
 }
 .sim-lightbox-trigger:hover::after { opacity: 1; }
+.cpi {
+  position: relative;
+}
+.cpi::after {
+  content: 'Tap to expand';
+  position: absolute;
+  bottom: 10px; right: 10px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.cpi:hover::after { opacity: 1; }
 
 #simLightboxOverlay {
   display: none;
@@ -1287,9 +1306,10 @@ footer{
   cursor: zoom-out;
 }
 #simLightboxOverlay.open { display: flex; }
+#simLightboxInner { cursor: default; }
 #simLightboxOverlay img {
   max-width: 100%;
-  max-height: 90dvh;
+  max-height: 76dvh;
   border-radius: 12px;
   object-fit: contain;
   box-shadow: 0 32px 80px rgba(0,0,0,.6);
@@ -1310,15 +1330,23 @@ footer{
   transition: background .2s;
 }
 #simLightboxClose:hover { background: rgba(255,255,255,.22); }
+#simLightboxDownload:hover { background: var(--blue-h) !important; }
 
 </style>
 </head>
 <body>
 
-<!-- SIM LIGHTBOX OVERLAY -->
+<!-- DESIGN LIGHTBOX OVERLAY -->
 <div id="simLightboxOverlay" onclick="closeSIMlightbox()">
   <button id="simLightboxClose" onclick="closeSIMlightbox()">Close ✕</button>
-  <img id="simLightboxImg" src="" alt="">
+  <div id="simLightboxInner" onclick="event.stopPropagation()" style="display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(520px,92vw);">
+    <div id="simLightboxAttrib" style="display:none;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;padding:6px 16px;border-radius:100px;text-align:center;"></div>
+    <img id="simLightboxImg" src="" alt="">
+    <a id="simLightboxDownload" href="" download style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:'Manrope',sans-serif;font-size:.78rem;font-weight:700;padding:10px 24px;border-radius:100px;text-decoration:none;transition:background .2s;border:none;cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M3.5 14.5v2a1 1 0 001 1h11a1 1 0 001-1v-2M10 2.5v9m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download Flyer
+    </a>
+  </div>
 </div>
 
 <!-- MOBILE MENU -->
@@ -1748,11 +1776,11 @@ footer{
     <div class="panel-h3">Problem &amp; Approach</div>
     <p class="panel-p"><strong>Problem:</strong> Generic motivational posts get scrolled past. Students needed content that felt real, specific to campus life, and visually sharp enough to share. <strong>Approach:</strong> Built a recurring content system: a motivation campaign, a practical checklist series, a conversational FAQ format, and a quote series. Each with a distinct visual identity that still felt like one brand.</p>
     <div class="cs-panel-grid">
-      <div class="cpi wide"><img src="dlcf-stay-grounded.jpg" alt="Stay Grounded Campaign"></div>
-      <div class="cpi"><img src="dlcf-before-class.jpg" alt="Before Class Checklist"></div>
-      <div class="cpi"><img src="dlcf-faq.jpg" alt="Academic FAQ Series"></div>
-      <div class="cpi"><img src="dlcf-quote1.jpg" alt="Quote Series Vol 1"></div>
-      <div class="cpi"><img src="dlcf-quote2.jpg" alt="Quote Series Vol 2"></div>
+      <div class="cpi wide" data-dl="dlcf-stay-grounded.jpg"><img src="dlcf-stay-grounded.jpg" alt="Stay Grounded Campaign"></div>
+      <div class="cpi" data-dl="dlcf-before-class-checklist.jpg"><img src="dlcf-before-class.jpg" alt="Before Class Checklist"></div>
+      <div class="cpi" data-dl="dlcf-academic-faq.jpg"><img src="dlcf-faq.jpg" alt="Academic FAQ Series"></div>
+      <div class="cpi" data-dl="dlcf-quote-series-vol1.jpg"><img src="dlcf-quote1.jpg" alt="Quote Series Vol 1"></div>
+      <div class="cpi" data-dl="dlcf-quote-series-vol2.jpg"><img src="dlcf-quote2.jpg" alt="Quote Series Vol 2"></div>
     </div>
     <div class="panel-h3">Pieces &amp; Solutions</div>
     <p class="panel-p"><strong>Stay Grounded Campaign:</strong> Bold typographic design with orange/navy identity, built for Instagram shareability during exam pressure periods.</p>
@@ -1775,7 +1803,7 @@ footer{
     <div class="panel-h3">Problem &amp; Approach</div>
     <p class="panel-p"><strong>Problem:</strong> Students disengage from tech communities during breaks. Recruitment visuals need to be bold enough to stop the scroll and clear enough to drive a single action: join the WhatsApp group. <strong>Approach:</strong> Nigeria's green-white palette mixed with tech iconography to signal credibility. QR code CTA linked directly to WhatsApp for trackable, frictionless onboarding.</p>
     <div class="cs-panel-grid">
-      <div class="cpi wide"><img src="dsn-holiday.webp" alt="Harness the Holiday Campaign"></div>
+      <div class="cpi wide" data-dl="dsn-harness-the-holiday.webp"><img src="dsn-holiday.webp" alt="Harness the Holiday Campaign"></div>
     </div>
     <div class="panel-h3">Result</div>
     <p class="panel-p"><strong>Holiday Skill-Up Campaign:</strong> Vibrant flyer designed to keep the DSN community active during semester breaks: tech iconography, green-white national palette, and a direct QR code CTA that drove WhatsApp group joins and enabled trackable chapter growth.</p>
@@ -1795,12 +1823,12 @@ footer{
     <div class="panel-h3">AeroPure Mini: Product Launch Ad</div>
     <p class="panel-p"><strong>Problem:</strong> A smart air purifier needed a single-frame ad that communicates features, quality, and urgency without overwhelming the viewer. <strong>Solution:</strong> Teal/mint palette, three-column feature callouts, lung illustration overlay, and an urgency-driven CTA, all in a composition built for Instagram and print.</p>
     <div class="cs-panel-grid">
-      <div class="cpi wide"><img src="aeropure.jpg" alt="AeroPure Mini Launch Ad"></div>
+      <div class="cpi wide" data-dl="aeropure-mini-launch-ad.jpg"><img src="aeropure.jpg" alt="AeroPure Mini Launch Ad"></div>
     </div>
     <div class="panel-h3">Emily Glam Studio: Brand Flyer</div>
     <p class="panel-p"><strong>Problem:</strong> A new Lagos beauty studio needed a launch flyer that reads as luxury without feeling cold: approachable and aspirational at the same time. <strong>Solution:</strong> Warm golden palette, oversized serif typography, frosted card overlay with service listing, and a light-leak photography treatment.</p>
     <div class="cs-panel-grid">
-      <div class="cpi wide"><img src="emily-glam.png" alt="Emily Glam Studio Brand Flyer"></div>
+      <div class="cpi wide" data-dl="emily-glam-studio-brand-flyer.png"><img src="emily-glam.png" alt="Emily Glam Studio Brand Flyer"></div>
     </div>
     <div class="panel-tags">
       <span class="ptag">Adobe Illustrator</span><span class="ptag">Canva</span><span class="ptag">Product Ad</span><span class="ptag">Brand Identity</span><span class="ptag">Print Design</span>
@@ -1890,16 +1918,17 @@ footer{
 
       <div class="cp-section-title">1 of 9 &mdash; Anticipate... (Phase 1 Teaser)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-attrib="⚠ Design credit: Not by Obinna · Included for campaign context only" data-dl="sim-anticipate-teaser.jpg">
           <img src="sim-anticipate.jpg" alt="Anticipate Teaser Flyer">
         </div>
       </div>
+      <p class="cp-p" style="font-size:.8rem;color:var(--amber);font-family:'JetBrains Mono',monospace;letter-spacing:.04em;margin-bottom:4px;">⚠ Attribution note: This flyer was not designed by me. It is included here for campaign documentation completeness only.</p>
       <p class="cp-p"><strong>What it needed to do:</strong> Create the first impression for the entire campaign before revealing what it is.</p>
       <p class="cp-p">This was the only piece that needed to do nothing except generate curiosity. Full-bleed navy with no white zone, maximum visual weight, no CTA, no information, no deadline. Just the Solutions In Me logo, the wordmark, and the single word "Anticipate..." in a handwritten script font. The decision to use a script font here, against all the bold condensed type that would follow in the rest of the campaign, was deliberate. The contrast between the structured brand logo and the flowing personal script created a human moment inside a formal brand. That tension is what a teaser needs. Restraint creates more curiosity than information does.</p>
 
       <div class="cp-section-title">2 of 9 &mdash; How to Identify a Problem (Phase 2 Parent Card)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-identify-a-problem.jpg">
           <img src="sim-identify.jpg" alt="How to Identify a Problem">
         </div>
       </div>
@@ -1908,7 +1937,7 @@ footer{
 
       <div class="cp-section-title">3 of 9 &mdash; Look Around You (Phase 2, Tip 1 of 4)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-look-around-you.jpg">
           <img src="sim-look-around.jpg" alt="Look Around You Tip 1">
         </div>
       </div>
@@ -1917,7 +1946,7 @@ footer{
 
       <div class="cp-section-title">4 of 9 &mdash; Listen to Complaints (Phase 2, Tip 2 of 4)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-listen-to-complaints.jpg">
           <img src="sim-complaints.jpg" alt="Listen to Complaints Tip 2">
         </div>
       </div>
@@ -1926,7 +1955,7 @@ footer{
 
       <div class="cp-section-title">5 of 9 &mdash; Spot Frustration (Phase 2, Tip 3 of 4)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-spot-frustration.jpg">
           <img src="sim-frustration.jpg" alt="Spot Frustration Tip 3">
         </div>
       </div>
@@ -1935,7 +1964,7 @@ footer{
 
       <div class="cp-section-title">6 of 9 &mdash; Check the Crowd (Phase 2, Tip 4 of 4)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-check-the-crowd.jpg">
           <img src="sim-crowd.jpg" alt="Check the Crowd Tip 4">
         </div>
       </div>
@@ -1944,7 +1973,7 @@ footer{
 
       <div class="cp-section-title">7 of 9 &mdash; Campaign Cover / Brand Reveal (Phase 3)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-campaign-cover.jpg">
           <img src="sim-cover.jpg" alt="Solutions In Me Campaign Cover">
         </div>
       </div>
@@ -1953,7 +1982,7 @@ footer{
 
       <div class="cp-section-title">8 of 9 &mdash; Who Will Emerge as FUPRE Best Innovator? (Phase 3)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-fupre-best-innovator.jpg">
           <img src="sim-innovator.jpg" alt="Who Will Emerge as Best Innovator">
         </div>
       </div>
@@ -1962,7 +1991,7 @@ footer{
 
       <div class="cp-section-title">9 of 9 &mdash; Submission Begins (Phase 4, Densest Info Piece)</div>
       <div class="cp-gallery one">
-        <div class="cp-gallery-img sim-lightbox-trigger">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="sim-submission-begins.jpg">
           <img src="sim-submission.jpg" alt="Submission Begins Flyer">
         </div>
       </div>
@@ -2531,16 +2560,48 @@ function switchTab(panelId, tabIndex){
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePanel(); });
 
-// ─── SIM LIGHTBOX ───
+// ─── DESIGN LIGHTBOX (works on all .sim-lightbox-trigger AND .cpi elements) ───
+function openDesignLightbox(imgSrc, imgAlt, downloadName, attrib) {
+  var overlay = document.getElementById('simLightboxOverlay');
+  var img = document.getElementById('simLightboxImg');
+  var dl = document.getElementById('simLightboxDownload');
+  var attribEl = document.getElementById('simLightboxAttrib');
+  img.src = imgSrc;
+  img.alt = imgAlt || '';
+  dl.href = imgSrc;
+  dl.download = downloadName || imgAlt || 'flyer';
+  if (attrib) {
+    attribEl.textContent = attrib;
+    attribEl.style.display = 'block';
+  } else {
+    attribEl.style.display = 'none';
+    attribEl.textContent = '';
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
 document.querySelectorAll('.sim-lightbox-trigger').forEach(function(wrap){
   wrap.addEventListener('click', function(){
     var img = wrap.querySelector('img');
     if(!img) return;
-    document.getElementById('simLightboxImg').src = img.src;
-    document.getElementById('simLightboxOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    var attrib = wrap.dataset.attrib || null;
+    var dlName = wrap.dataset.dl || null;
+    openDesignLightbox(img.src, img.alt, dlName, attrib);
   });
 });
+
+document.querySelectorAll('.cpi').forEach(function(wrap){
+  wrap.style.cursor = 'zoom-in';
+  wrap.addEventListener('click', function(){
+    var img = wrap.querySelector('img');
+    if(!img) return;
+    var attrib = wrap.dataset.attrib || null;
+    var dlName = wrap.dataset.dl || null;
+    openDesignLightbox(img.src, img.alt, dlName, attrib);
+  });
+});
+
 function closeSIMlightbox(){
   document.getElementById('simLightboxOverlay').classList.remove('open');
   document.getElementById('simLightboxImg').src = '';
