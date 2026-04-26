@@ -1238,9 +1238,11 @@ footer{
   #panel-dlcf .cp-hero,
   #panel-dsn .cp-hero,
   #panel-freelance .cp-hero,
+  #panel-sim .cp-hero,
   #panel-dlcf .cp-panes,
   #panel-dsn .cp-panes,
-  #panel-freelance .cp-panes {
+  #panel-freelance .cp-panes,
+  #panel-sim .cp-panes {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -1251,9 +1253,73 @@ footer{
   }
 }
 
+/* ─── SIM LIGHTBOX ─── */
+.sim-lightbox-trigger {
+  cursor: zoom-in;
+  position: relative;
+}
+.sim-lightbox-trigger::after {
+  content: 'Tap to expand';
+  position: absolute;
+  bottom: 10px; right: 10px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.sim-lightbox-trigger:hover::after { opacity: 1; }
+
+#simLightboxOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+#simLightboxOverlay.open { display: flex; }
+#simLightboxOverlay img {
+  max-width: 100%;
+  max-height: 90dvh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6);
+}
+#simLightboxClose {
+  position: fixed;
+  top: 18px; right: 20px;
+  background: rgba(255,255,255,.12);
+  border: 1.5px solid rgba(255,255,255,.2);
+  color: #fff;
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background .2s;
+}
+#simLightboxClose:hover { background: rgba(255,255,255,.22); }
+
 </style>
 </head>
 <body>
+
+<!-- SIM LIGHTBOX OVERLAY -->
+<div id="simLightboxOverlay" onclick="closeSIMlightbox()">
+  <button id="simLightboxClose" onclick="closeSIMlightbox()">Close ✕</button>
+  <img id="simLightboxImg" src="" alt="">
+</div>
 
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu">
@@ -1654,7 +1720,7 @@ footer{
         <div>
           <div class="cs-scope">Solutions In Me · FUPRE Edition · Volunteer Designer</div>
           <div class="cs-name">Solutions In Me Campaign</div>
-          <p class="cs-desc">Full multi-phase campaign design for a student innovation challenge at FUPRE. 9 flyers across 4 phases: teaser, educational tip series, submission announcement, and event details — all under a unified brand system.</p>
+          <p class="cs-desc">Full multi-phase campaign design for a student innovation challenge at FUPRE. 9 flyers across 4 phases: teaser, educational tip series, submission announcement, and event details. All built under a unified brand system.</p>
         </div>
         <div class="cs-footer">
           <div class="cs-tags">
@@ -1744,58 +1810,168 @@ footer{
 
 <!-- SOLUTIONS IN ME PANEL -->
 <div class="side-panel" id="panel-sim">
-  <div class="panel-inner">
-    <button class="panel-back" onclick="closePanel()">← Back</button>
-    <div class="panel-lbl">Solutions In Me · FUPRE Edition · Volunteer Graphic Designer</div>
-    <div class="panel-title">Solutions In Me Campaign</div>
-
-    <div class="panel-h3">Project Overview</div>
-    <p class="panel-p">Solutions In Me (FUPRE Edition) is a student innovation challenge run at the Federal University of Petroleum Resources, Effurun, sponsored by Aliva Tech &amp; Gadgets. The challenge challenges FUPRE students to identify real problems in their campus and daily life, design practical solutions, and compete for a ₦45,000 prize pool. I served as volunteer graphic designer across all four phases of the campaign — from first teaser post to submission deadline flyer — producing 9 distinct pieces under a unified brand system without breaking visual consistency.</p>
-    <p class="panel-p">This is an ongoing volunteer role. The campaign ran in phases across April 2025, and the relationship with the Solutions In Me brand continues as new editions are planned.</p>
-
-    <div class="panel-h3">The Problem Statement</div>
-    <p class="panel-p">Student innovation campaigns at campus level typically suffer one of two design failures: they look generic (stock photo + bold text, no real identity), or they look overdesigned and lose clarity of message in the scroll. The challenge for this campaign was a harder version of both: the brief required multiple distinct flyer types — teaser, educational series, announcement, event details — that all needed to feel like a single brand while serving completely different communication goals. A teaser flyer and a submission-open announcement have almost nothing in common structurally, yet both needed to be instantly recognisable as Solutions In Me content.</p>
-
-    <div class="panel-h3">Brand Goals</div>
-    <p class="panel-p">The Solutions In Me brand had three core communication goals for this campaign. First: credibility. A student innovation challenge competing for attention on campus social media needed to look sponsored and professional, not like a WhatsApp flyer. The Aliva Tech &amp; Gadgets sponsorship badge needed to be present and prominent without dominating every piece. Second: energy. The brand needed to feel exciting and action-oriented — the kind of content a student would screenshot and share, not scroll past. Third: clarity of instruction. The submission-open and event-details flyers had dense information (deadlines, prize amounts, submission steps, selection criteria) that needed to be legible and scannable at thumbnail size.</p>
-
-    <div class="panel-h3">Brand Identity &amp; Color System</div>
-    <p class="panel-p"><strong>Primary: Deep Navy (#003366)</strong> — The dominant background color across all banner elements. Navy communicates authority and institutional seriousness, critical for a challenge asking students to take a competitive process seriously. It also gave every piece a premium feel that separated this campaign from typical campus event flyers.</p>
-    <p class="panel-p"><strong>Accent: Bright Orange (#FF6600)</strong> — Used for the "ME" wordmark, all numbered step indicators, section labels, hashtag, and sponsor elements. Orange carries energy, urgency, and optimism — the exact tone needed to motivate student participation. The high contrast between navy and orange ensures the eye lands on key information immediately.</p>
-    <p class="panel-p"><strong>Light Background (#F4F6FA / White)</strong> — Used for the page background behind the banner strip, creating visual breathing room and preventing the navy from feeling claustrophobic across a 9-piece series.</p>
-
-    <div class="panel-h3">Typography</div>
-    <p class="panel-p">All headlines used a bold, condensed sans-serif (Lato Bold / Montserrat) for the primary campaign titles. The design choice was intentional: condensed type packs authority into a small horizontal space, allowing large text without crowding the composition. Secondary body text (subheadings and descriptions inside the banner) used a lighter weight of the same family to create clear typographic hierarchy without introducing a second typeface.</p>
-
-    <div class="panel-h3">The Torn-Edge Banner Motif</div>
-    <p class="panel-p">The signature visual element across all 9 pieces is the torn-edge navy banner that cuts across the middle of every flyer. This motif served a specific function: it provided a consistent structural anchor that made every piece recognisable as belonging to the same campaign, regardless of whether the flyer was a teaser, a numbered tip card, or an announcement. It also created a natural two-zone composition — the banner zone for primary messaging and imagery, the white zone above and below for the logo, sponsor credit, and hashtag. This prevented layout chaos across a diverse set of flyer types.</p>
-
-    <div class="panel-h3">Campaign Structure: 4 Phases, 9 Pieces</div>
-    <p class="panel-p"><strong>Phase 1: Teaser (1 flyer)</strong> — "Anticipate…" flyer on a dark blue textured background. Full-bleed navy with no white zone, maximum visual weight. The goal was a single strong impression: something is coming. No information, no CTA, just identity. The decision to strip it back to logo + wordmark + script font was deliberate — restraint creates curiosity.</p>
-    <p class="panel-p"><strong>Phase 2: Educational Tip Series (5 flyers)</strong> — "How to Identify a Problem" parent card, followed by four numbered method cards: Look Around You (1), Listen to Complaints (2), Spot Frustration (3), Check the Crowd (4). The numbered series format was chosen because it creates content rhythm — students who see card 2 are primed to look for card 3. Each card uses the same layout scaffold (banner, two framed photo cutouts, title, subtitle prompt) but with different photography and copy, making the series feel like a coherent content journey rather than a batch of individual posts.</p>
-    <p class="panel-p"><strong>Phase 3: Event Announcement (1 flyer)</strong> — "Who Will Emerge as FUPRE Best Innovator?" flyer on a white/cream background, departing from the standard template to foreground the prize information and submission mechanics. Light background was chosen to signal a content shift: this is no longer educational content, this is a call to action. The lightbulb illustration with silhouetted people was selected to visualise collective innovation without relying on photography.</p>
-    <p class="panel-p"><strong>Phase 4: Submission Open (1 flyer)</strong> — The densest information piece in the campaign: how to submit, solution criteria, selection process, deadline. The challenge was fitting all of this onto one flyer without it becoming a wall of text. Solution: two-column card layout with clear labelled sections (Submissions Now Open / Your Solution Must Be / How to Submit / Selection Process), each in a distinct visual block. The deadline was pulled out in orange bold at the bottom to ensure it was never missed.</p>
-
-    <div class="panel-h3">Photography &amp; Image Treatment</div>
-    <p class="panel-p">All photography used a dashed-border cutout frame treatment — rectangular image windows with a visible dashed perimeter placed inside the banner. This device served two purposes: it gave the photos an editorial, scrapbook quality that felt energetic rather than corporate, and it provided a consistent image container that worked regardless of the source photo's composition. All photos depicted Nigerian students in study and discussion contexts, a deliberate choice to ensure the audience saw themselves in the campaign material.</p>
-
-    <div class="panel-h3">Why Each Design Decision Was Made</div>
-    <p class="panel-p"><strong>Consistent footer system:</strong> Every piece carries the same bottom zone: Aliva Tech &amp; Gadgets sponsor credit on the left, #solutionstartswithme hashtag on the right. This was non-negotiable for sponsor visibility and made the campaign trackable on social media without requiring separate captions to include the hashtag every time.</p>
-    <p class="panel-p"><strong>Large step numbers:</strong> The oversized numbered characters (1, 2, 3, 4) placed at the base of each tip card were sized to be visible even at thumbnail scale. On Instagram, most content is consumed in grid view before being tapped. The number serves as a visual signal in the grid: "this is part of a series, there is more."</p>
-    <p class="panel-p"><strong>Script font for "Anticipate…":</strong> The teaser used a handwritten/script font for the single word "Anticipate…" against all the bold type in the rest of the campaign. The contrast between the structured logo and the personal, flowing script created the tension the teaser needed — formal brand, human moment.</p>
-
-    <div class="panel-tags">
-      <span class="ptag">Campaign Design</span>
-      <span class="ptag">Multi-Phase</span>
-      <span class="ptag">Brand System</span>
-      <span class="ptag">Canva</span>
-      <span class="ptag">Social Media</span>
-      <span class="ptag">Student Marketing</span>
-      <span class="ptag">Volunteer</span>
-      <span class="ptag">FUPRE</span>
+  <div class="cp-hero">
+    <button class="cp-back" onclick="closePanel()">&#x2190; Back</button>
+    <div class="cp-lbl">Solutions In Me &middot; FUPRE Edition &middot; Volunteer Graphic Designer</div>
+    <div class="cp-title">Solutions In Me Campaign</div>
+    <div class="cp-badges">
+      <span class="cp-badge">Campaign Design</span>
+      <span class="cp-badge">Multi-Phase</span>
+      <span class="cp-badge">Brand System</span>
+      <span class="cp-badge">Canva</span>
+      <span class="cp-badge">Student Marketing</span>
+      <span class="cp-badge">Volunteer</span>
+      <span class="cp-badge">FUPRE</span>
+    </div>
+    <div class="cp-stats-row">
+      <div>
+        <div class="cp-stat-num">9</div>
+        <div class="cp-stat-lbl">Flyers Designed</div>
+      </div>
+      <div>
+        <div class="cp-stat-num">4</div>
+        <div class="cp-stat-lbl">Campaign Phases</div>
+      </div>
+      <div>
+        <div class="cp-stat-num">&#x20A6;<span>45k</span></div>
+        <div class="cp-stat-lbl">Prize Pool</div>
+      </div>
     </div>
   </div>
-</div>
+  <div class="cp-tabs">
+    <button class="cp-tab active" onclick="switchTab('panel-sim',0)">Overview</button>
+    <button class="cp-tab" onclick="switchTab('panel-sim',1)">Problem</button>
+    <button class="cp-tab" onclick="switchTab('panel-sim',2)">All 9 Designs</button>
+  </div>
+  <div class="cp-panes">
+
+    <!-- OVERVIEW TAB -->
+    <div class="cp-pane active">
+      <div class="cp-section-title">Project Overview</div>
+      <p class="cp-p">Solutions In Me (FUPRE Edition) is a student innovation challenge run at the Federal University of Petroleum Resources, Effurun, sponsored by Aliva Tech &amp; Gadgets. The challenge pushes FUPRE students to identify real problems in their campus and daily life, design practical solutions, and compete for a prize pool of 45,000 naira. I served as volunteer graphic designer across all four phases of the campaign, from the first teaser post to the submission deadline flyer, producing 9 distinct pieces under a unified brand system without breaking visual consistency across any of them.</p>
+      <p class="cp-p">This is an ongoing volunteer role. The campaign ran in phases across April 2025, and the relationship with the Solutions In Me brand continues as new editions are planned.</p>
+
+      <div class="cp-section-title">Brand Identity and Color System</div>
+      <p class="cp-p"><strong>Primary: Deep Navy (#003366).</strong> The dominant background color across all banner elements. Navy communicates authority and institutional seriousness, which is critical for a challenge asking students to take a competitive process seriously. It also gave every piece a premium feel that separated this campaign from typical campus event flyers built on gradients and stock imagery.</p>
+      <p class="cp-p"><strong>Accent: Bright Orange (#FF6600).</strong> Used for the "ME" wordmark, all numbered step indicators, section labels, hashtag, and sponsor elements. Orange carries energy, urgency, and optimism. The high contrast between navy and orange ensures the eye lands on key information immediately, even at thumbnail size in an Instagram grid before anyone taps the post.</p>
+      <p class="cp-p"><strong>Light Background (#F4F6FA / White).</strong> Used for the page background behind the banner strip on most flyers, creating visual breathing room and preventing the navy from feeling claustrophobic across a 9-piece series seen over multiple weeks.</p>
+
+      <div class="cp-section-title">Typography</div>
+      <p class="cp-p">All headlines used a bold, condensed sans-serif (Lato Bold / Montserrat) for the primary campaign titles. Condensed type packs authority into a small horizontal space, allowing large text without crowding the composition. Secondary body text used a lighter weight of the same family to create clear typographic hierarchy without introducing a second typeface and risking inconsistency across pieces produced at different times.</p>
+
+      <div class="cp-section-title">The Torn-Edge Banner Motif</div>
+      <p class="cp-p">The signature visual element across all 9 pieces is the torn-edge navy banner that cuts across the middle of every flyer. It served a specific structural function: it provided a consistent anchor that made every piece recognisable as belonging to the same campaign, regardless of whether the flyer was a teaser, a numbered tip card, or a submission announcement. It also created a natural two-zone composition. The banner zone held primary messaging and imagery. The white zone above and below held the logo, sponsor credit, and hashtag. This prevented layout chaos across a diverse set of flyer types with very different information densities.</p>
+    </div>
+
+    <!-- PROBLEM TAB -->
+    <div class="cp-pane">
+      <div class="cp-section-title">The Design Problem</div>
+      <p class="cp-p">Student innovation campaigns at campus level typically suffer one of two design failures: they look generic (stock photo plus bold text, no real identity), or they look overdesigned and lose clarity of message in the scroll. The challenge for this campaign was a harder version of both. The brief required multiple distinct flyer types that all needed to feel like a single brand while serving completely different communication goals.</p>
+      <p class="cp-p">A teaser flyer and a submission-open announcement have almost nothing in common structurally, yet both needed to be instantly recognisable as Solutions In Me content. Getting that right across 9 pieces produced over several weeks, without the brand drifting, is a real design constraint. Not a trivial one.</p>
+
+      <div class="cp-section-title">Brand Goals</div>
+      <p class="cp-p"><strong>Credibility.</strong> A student innovation challenge competing for attention on campus social media needed to look sponsored and professional, not like a WhatsApp flyer someone threw together. The Aliva Tech &amp; Gadgets sponsorship badge needed to be present and prominent without dominating every piece.</p>
+      <p class="cp-p"><strong>Energy.</strong> The brand needed to feel exciting and action-oriented. The kind of content a student would screenshot and share, not scroll past. Navy and orange does a lot of that work before a single word is read.</p>
+      <p class="cp-p"><strong>Clarity of instruction.</strong> The submission-open and event-details flyers carried dense information: deadlines, prize amounts, submission steps, selection criteria. All of it needed to be legible and scannable at thumbnail size. If you have to zoom in to read a flyer, the design already failed.</p>
+
+      <div class="cp-section-title">Photography and Image Treatment</div>
+      <p class="cp-p">All photography used a dashed-border cutout frame treatment: rectangular image windows with a visible dashed perimeter placed inside the navy banner. This gave the photos an editorial, scrapbook quality that felt energetic rather than corporate, and it provided a consistent image container that worked regardless of the source photo's composition. All photos depicted Nigerian students in study and discussion contexts. A deliberate choice to ensure the audience saw themselves in the material, not stock imagery of people they could not relate to.</p>
+
+      <div class="cp-section-title">Campaign Structure</div>
+      <p class="cp-p"><strong>Phase 1: Teaser (1 flyer).</strong> Full-bleed navy. Maximum visual weight. No information, no CTA. One word in a script font. The goal was curiosity, not communication.</p>
+      <p class="cp-p"><strong>Phase 2: Educational Tip Series (5 flyers).</strong> Parent card plus four numbered method cards. Same layout scaffold across all five pieces. Different photography and copy. Chosen because numbered series create content rhythm: students who see card 2 are primed to look for card 3.</p>
+      <p class="cp-p"><strong>Phase 3: Event Announcement (1 flyer).</strong> Light background. Departure from the standard template signals a content shift: this is no longer educational content. This is a call to action.</p>
+      <p class="cp-p"><strong>Phase 4: Submission Open (1 flyer).</strong> The densest information piece. Two-column card layout with clearly labelled sections. Deadline in orange bold at the bottom so it cannot be missed.</p>
+    </div>
+
+    <!-- ALL 9 DESIGNS TAB -->
+    <div class="cp-pane">
+      <p class="cp-p" style="margin-bottom:8px;font-style:italic;">Tap any image to view it full size.</p>
+
+      <div class="cp-section-title">1 of 9 &mdash; Anticipate... (Phase 1 Teaser)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-anticipate.jpg" alt="Anticipate Teaser Flyer">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Create the first impression for the entire campaign before revealing what it is.</p>
+      <p class="cp-p">This was the only piece that needed to do nothing except generate curiosity. Full-bleed navy with no white zone, maximum visual weight, no CTA, no information, no deadline. Just the Solutions In Me logo, the wordmark, and the single word "Anticipate..." in a handwritten script font. The decision to use a script font here, against all the bold condensed type that would follow in the rest of the campaign, was deliberate. The contrast between the structured brand logo and the flowing personal script created a human moment inside a formal brand. That tension is what a teaser needs. Restraint creates more curiosity than information does.</p>
+
+      <div class="cp-section-title">2 of 9 &mdash; How to Identify a Problem (Phase 2 Parent Card)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-identify.jpg" alt="How to Identify a Problem">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Open the tip series and establish the visual grammar for all four method cards that follow.</p>
+      <p class="cp-p">This card introduces the series concept before the numbered tips begin. It uses the full torn-edge banner structure with two framed student photo cutouts inside the navy zone. That layout was locked in here and carried through all four method cards. The reason for establishing it on the parent card first was intentional: once students saw this piece, the visual grammar was set. Every subsequent card they encountered would read immediately as a continuation without needing to re-establish context. The headline "How to Identify a Problem" was sized to read clearly in an Instagram grid without tapping. On Instagram, most content is decided at grid level. If the headline doesn't read at thumbnail size, the content is already lost.</p>
+
+      <div class="cp-section-title">3 of 9 &mdash; Look Around You (Phase 2, Tip 1 of 4)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-look-around.jpg" alt="Look Around You Tip 1">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Be the first numbered card and immediately communicate that this is a series worth following.</p>
+      <p class="cp-p">The oversized "1" at the bottom of this card, sized to be clearly visible even at grid thumbnail scale, was the most deliberate single decision in the entire educational series. On Instagram, when someone sees a large number at the base of a card, they read it as: there is a series and this is where it starts. It primes them to look for card 2. That number does more retention work than any caption could. The method prompt "Look Around You" was kept to three words because the framed photos carry the explanatory weight. The image cutouts show students in observation contexts. You understand the instruction before you finish reading it.</p>
+
+      <div class="cp-section-title">4 of 9 &mdash; Listen to Complaints (Phase 2, Tip 2 of 4)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-complaints.jpg" alt="Listen to Complaints Tip 2">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Continue the series rhythm and hold the audience who followed card 1.</p>
+      <p class="cp-p">The structural layout is identical to card 1, and that is the point. By holding the same scaffold across same banner position, same photo frame treatment, same footer, same number placement, the series creates visual rhythm. Students who saw card 1 will recognise card 2 before they read it. That recognition is the hook that pulls them from one card to the next. The method chosen here was complaints specifically because it is the most actionable observation skill in the set. Students complain constantly. Reframing complaints as innovation signals is the kind of perspective shift worth repeating across a social series. It also escalates from passive observation (look around) to active listening.</p>
+
+      <div class="cp-section-title">5 of 9 &mdash; Spot Frustration (Phase 2, Tip 3 of 4)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-frustration.jpg" alt="Spot Frustration Tip 3">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Maintain series momentum at the midpoint, where series fatigue typically starts.</p>
+      <p class="cp-p">Card 3 is the hardest in any numbered series. By the midpoint, engagement begins to drop for audiences who were only passively following. The design counters this by keeping the numbered visual anchor (the "3") prominent, which signals progress rather than repetition. Frustration was chosen as the third method because it escalates from observation and listening to emotional detection. The progression is intentional: the series teaches a framework, not just a list of tips. Each card builds on the last at the conceptual level even though the layouts look structurally identical. That layering is invisible to the viewer but it is why the series holds together as a coherent unit rather than feeling like five random posts.</p>
+
+      <div class="cp-section-title">6 of 9 &mdash; Check the Crowd (Phase 2, Tip 4 of 4)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-crowd.jpg" alt="Check the Crowd Tip 4">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Close the tip series and create a natural transition into the event announcement phase.</p>
+      <p class="cp-p">The final numbered card needed to close the loop while functioning as a bridge to what comes next. "Check the Crowd" was placed last because it is the most externally focused method, moving from personal observation and emotional detection to social pattern recognition. The escalation ends at the most outward-looking skill. After four tip cards, the audience now has a framework. The transition to Phase 3 content works because the groundwork has been laid: students who followed the series know what a problem is, and the next piece tells them what to do about it. The large "4" at the base signals completion, not just another card.</p>
+
+      <div class="cp-section-title">7 of 9 &mdash; Campaign Cover / Brand Reveal (Phase 3)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-cover.jpg" alt="Solutions In Me Campaign Cover">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Transition from educational content to event action and re-establish the full brand identity at the phase boundary.</p>
+      <p class="cp-p">This piece departs from the educational series layout to signal that something is actually happening now, not just being taught. The full campaign logo is brought to the foreground more prominently than in any other piece. The goal was less about communicating specific information and more about re-establishing the brand identity at a phase transition point, reminding the audience that all the tips they just consumed were building toward this specific event. It functions as a reset and a reveal simultaneously. A campaign without this bridge piece would feel like it jumped from tip series to submission deadline with no contextual link. This piece is that link.</p>
+
+      <div class="cp-section-title">8 of 9 &mdash; Who Will Emerge as FUPRE Best Innovator? (Phase 3)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-innovator.jpg" alt="Who Will Emerge as Best Innovator">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Make the prize and the challenge feel real and personally achievable to every student who sees it.</p>
+      <p class="cp-p">This was the first piece designed on a light/cream background rather than the navy-dominant palette. The departure was intentional: a lighter tone signals that this is no longer educational content but a direct call to action. The lightbulb illustration with silhouetted people was chosen because it visualised collective innovation without relying on photography, giving the layout more space to foreground the prize information. The headline poses a direct question because questions drive more engagement than statements do. "Who will emerge as FUPRE's best innovator?" positions every student reading it as a potential answer. That is the psychological response the flyer needed to generate before they even get to the submission details.</p>
+
+      <div class="cp-section-title">9 of 9 &mdash; Submission Begins (Phase 4, Densest Info Piece)</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger">
+          <img src="sim-submission.jpg" alt="Submission Begins Flyer">
+        </div>
+      </div>
+      <p class="cp-p"><strong>What it needed to do:</strong> Communicate the most information clearly in the least visual space, without becoming a wall of text.</p>
+      <p class="cp-p">This was the most technically difficult piece in the campaign. It needed to carry how to submit, what your solution must be, the selection process, the deadline, and the prize amount. Five distinct information categories on a single flyer without a single category getting lost. The solution was a two-column card layout with clearly labelled sections, each in a distinct visual block with enough whitespace to be scannable at thumbnail size. The deadline was pulled out in orange bold at the bottom because it is the single piece of information that determines whether a student acts or loses the opportunity. It needed to be impossible to miss even if you only glanced at the flyer for two seconds. The "Submission Begins!" header was set large because the announcement had to land before the details. You need to know what decision you are being asked to make before you engage with the instructions for how to make it.</p>
+    </div>
+
+  </div><!-- end cp-panes -->
+</div><!-- end panel-sim -->
 
 <!-- CONTACT -->
 <section id="contact">
@@ -2354,6 +2530,23 @@ function switchTab(panelId, tabIndex){
   panel.querySelectorAll('.cp-pane').forEach(function(p,i){ p.classList.toggle('active', i===tabIndex); });
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePanel(); });
+
+// ─── SIM LIGHTBOX ───
+document.querySelectorAll('.sim-lightbox-trigger').forEach(function(wrap){
+  wrap.addEventListener('click', function(){
+    var img = wrap.querySelector('img');
+    if(!img) return;
+    document.getElementById('simLightboxImg').src = img.src;
+    document.getElementById('simLightboxOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function closeSIMlightbox(){
+  document.getElementById('simLightboxOverlay').classList.remove('open');
+  document.getElementById('simLightboxImg').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSIMlightbox(); });
 
 async function sendForm(){
   var btn = document.getElementById('sendBtn');
