@@ -1253,7 +1253,82 @@ footer{
   }
 }
 
-/* ─── SIM LIGHTBOX ─── */
+/* ─── ARTICLES ─── */
+#articles{background:var(--bg2);border-top:1.5px solid var(--border)}
+.articles-list{display:flex;flex-direction:column;gap:0}
+
+.article-card{
+  padding:40px 0;
+  border-bottom:1.5px solid var(--border);
+}
+.article-card:first-child{border-top:1.5px solid var(--border)}
+
+.article-meta{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:14px;
+}
+.article-pub{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;font-weight:500;
+  color:var(--blue);text-transform:uppercase;letter-spacing:.12em;
+}
+.article-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:var(--faint);letter-spacing:.06em;
+}
+.article-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-weight:800;color:var(--text);
+  line-height:1.15;letter-spacing:-.02em;
+  margin-bottom:16px;
+  max-width:780px;
+  transition:color .2s;
+}
+.article-card:hover .article-title{color:var(--blue)}
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+
+.article-excerpt{
+  font-size:.97rem;line-height:2.0;
+  color:var(--muted);max-width:760px;
+  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+  max-height:7.5em;
+  -webkit-mask-image:linear-gradient(to bottom,black 50%,transparent 100%);
+  mask-image:linear-gradient(to bottom,black 50%,transparent 100%);
+}
+.article-footer{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.btn-article{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:100px;
+  background:var(--blue);color:#fff !important;
+  font-size:.8rem;font-weight:700;
+  border:2px solid var(--blue);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.btn-article:hover{background:var(--blue-h);border-color:var(--blue-h);transform:translateY(-2px)}
+.article-substack-link{
+  font-size:.8rem;font-weight:700;
+  color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+  letter-spacing:.04em;
+  transition:color .2s;
+}
+.article-substack-link:hover{color:var(--blue)}
+
+/* Orvalon mobile panel */
+@media(max-width:680px){
+  #panel-orvalon .cp-hero,
+  #panel-orvalon .cp-panes {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
 .sim-lightbox-trigger {
   cursor: zoom-in;
   position: relative;
@@ -1354,6 +1429,7 @@ footer{
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#projects" onclick="closeMob()">Projects</a>
   <a href="#design" onclick="closeMob()">Design</a>
+  <a href="#articles" onclick="closeMob()">Writing</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
   <button class="mob-theme-btn" id="mobThemeBtn" onclick="toggleTheme()">Light Mode</button>
   <a href="Obinna_Egenti_CV.html.pdf" download class="mob-resume" onclick="closeMob()">Download CV ↓</a>
@@ -1366,6 +1442,7 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#design">Design</a></li>
+    <li><a href="#articles">Writing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right-group">
@@ -1454,6 +1531,13 @@ footer{
       <p>Long-term goal: build <strong>Cionti</strong>, a skill-based local connection platform, into a profitable product by 2030. I leverage <strong>AI-assisted workflows</strong> to ship faster without losing code ownership.</p>
     </div>
     <div class="roles-list reveal">
+      <div class="role-item reveal">
+        <div>
+          <div class="role-title">Graphic Design Intern</div>
+          <div class="role-org">Orvalon Digital</div>
+        </div>
+        <div class="role-year">2025–</div>
+      </div>
       <div class="role-item reveal">
         <div>
           <div class="role-title">Chapter Lead</div>
@@ -1741,6 +1825,34 @@ footer{
       </div>
     </div>
 
+    <!-- Orvalon Digital -->
+    <div class="cs-card reveal from-left">
+      <div class="cs-preview">
+        <div class="cs-mosaic">
+          <img src="orvalon-1.jpg" alt="Orvalon Expectation vs Reality">
+          <img src="orvalon-2.jpg" alt="Orvalon Speed Without Quality">
+          <img src="orvalon-4.jpg" alt="Orvalon Day in the Life">
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-scope">Orvalon Digital · Graphic Design Intern · SIWES 2025</div>
+          <div class="cs-name">Orvalon Digital — Social Media Design</div>
+          <p class="cs-desc">Weekly social media content for a talent recruitment and HR digital agency. Deep blue and teal brand identity, built to communicate Orvalon's positioning across Instagram and LinkedIn — sharp, bold, and conversion-focused.</p>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-tags">
+            <span class="ptag">Social Media</span>
+            <span class="ptag">Brand Identity</span>
+            <span class="ptag">HR / Recruitment</span>
+            <span class="ptag">Canva</span>
+            <span class="ptag">Ongoing</span>
+          </div>
+          <button class="btn-cs" onclick="openDesignPanel('orvalon')">View Work →</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1980,6 +2092,142 @@ footer{
 
   </div><!-- end cp-panes -->
 </div><!-- end panel-sim -->
+
+<!-- ORVALON PANEL -->
+<div class="side-panel" id="panel-orvalon">
+  <div class="cp-hero">
+    <button class="cp-back" onclick="closePanel()">&#x2190; Back</button>
+    <div class="cp-lbl">Orvalon Digital &middot; Graphic Design Intern &middot; SIWES 2025</div>
+    <div class="cp-title">Orvalon Digital — Social Media Work</div>
+    <div class="cp-badges">
+      <span class="cp-badge">Social Media Design</span>
+      <span class="cp-badge">HR / Recruitment</span>
+      <span class="cp-badge">Brand Identity</span>
+      <span class="cp-badge">Canva</span>
+      <span class="cp-badge">Ongoing</span>
+      <span class="cp-badge">SIWES</span>
+    </div>
+    <div class="cp-stats-row">
+      <div>
+        <div class="cp-stat-num" style="color:var(--green);">Live</div>
+        <div class="cp-stat-lbl">Active Internship</div>
+      </div>
+      <div>
+        <div class="cp-stat-num">Wk <span>1&ndash;2</span></div>
+        <div class="cp-stat-lbl">Shown Here</div>
+      </div>
+    </div>
+  </div>
+  <div class="cp-tabs">
+    <button class="cp-tab active" onclick="switchTab('panel-orvalon',0)">Context</button>
+    <button class="cp-tab" onclick="switchTab('panel-orvalon',1)">The Work</button>
+  </div>
+  <div class="cp-panes">
+
+    <div class="cp-pane active">
+      <div class="cp-section-title">About Orvalon Digital</div>
+      <p class="cp-p">Orvalon Digital is a talent recruitment and HR-focused digital agency. Their social media content is built around one positioning: they bridge the gap between skilled candidates and the employers who need them. Every piece of content reinforces that idea from a different angle.</p>
+      <div class="cp-section-title">My Role</div>
+      <p class="cp-p">As graphic design intern during my SIWES placement (started May 2025), I produce weekly social media content on the Orvalon brand system. The visual language is consistent: deep blue and teal palette, bold typographic headlines, clean 3D-rendered or photographic supporting imagery, and a footer strip that anchors every post to the Orvalon identity.</p>
+      <p class="cp-p">This is a growing body of work. What is shown here represents weeks 1 and 2. More gets added as the internship continues.</p>
+      <div class="cp-section-title">Brand System</div>
+      <p class="cp-p"><strong>Primary: Deep Blue / Navy.</strong> The dominant background color across all posts. Communicates authority and professionalism, which is exactly the brand position Orvalon holds in a talent market where trust is everything.</p>
+      <p class="cp-p"><strong>Accent: Teal / Cyan.</strong> Used for headline highlights, divider lines, and CTA boxes. The teal lifts key phrases out of the navy without competing with the primary message.</p>
+      <p class="cp-p"><strong>Typography:</strong> Bold condensed display type for headlines, clean sans-serif for supporting copy. Every headline is designed to read clearly at Instagram grid thumbnail size before a viewer taps into the post.</p>
+    </div>
+
+    <div class="cp-pane">
+      <p class="cp-p" style="margin-bottom:16px;font-style:italic;">Tap any image to expand. Work from weeks 1 and 2 of SIWES placement.</p>
+
+      <div class="cp-section-title">Expectation vs Reality</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-1.jpg">
+          <img src="orvalon-1.jpg" alt="Expectation vs Reality">
+        </div>
+      </div>
+      <p class="cp-p">A split-panel format contrasting what job seekers expect after learning a skill versus the reality they face. The visual tension is the point: the left panel is clean and confident; the right panel shows rejected applications and experience demands. Orvalon's tagline at the bottom resolves the tension. Brief, clear, and immediately relatable to anyone who has graduated and found themselves stuck in the entry-level paradox.</p>
+
+      <div class="cp-section-title">Speed Without Quality</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-2.jpg">
+          <img src="orvalon-2.jpg" alt="Speed Without Quality Is Useless">
+        </div>
+      </div>
+      <p class="cp-p">Positioned against the perception that recruitment should just be fast. The visual is a 3D character holding a card that lists the cost of rushing: 200 CVs reviewed, 3 weeks wasted, 1 wrong hire. The framing turns a process failure into a concrete number problem. Numbers are harder to argue with than abstract claims about quality.</p>
+
+      <div class="cp-section-title">You Can Only Pick One</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-3.jpg">
+          <img src="orvalon-3.jpg" alt="You Can Only Pick One">
+        </div>
+      </div>
+      <p class="cp-p">A direct comparison frame: a stack of 100 unvetted CVs versus 5 pre-vetted candidates ready to work. The A/B choice format forces a decision before the viewer even reads the copy. It is one of the cleanest content structures for demonstrating a value proposition because the audience makes the argument for you.</p>
+
+      <div class="cp-section-title">A Day in the Life</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-4.jpg">
+          <img src="orvalon-4.jpg" alt="A Day in the Life">
+        </div>
+      </div>
+      <p class="cp-p">Split photography: a stressed HR manager drowning in CVs on the left versus a relaxed HR manager reviewing 5 vetted profiles on the right. The emotional contrast does most of the work. Real people in real contexts land differently from 3D renders. This piece was built to reach HR professionals directly.</p>
+
+      <div class="cp-section-title">Opportunities Don't Wait</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-5.jpg">
+          <img src="orvalon-5.jpg" alt="Opportunities Don't Wait">
+        </div>
+      </div>
+      <p class="cp-p">Speaking to the talent side of Orvalon's audience. The imagery is deliberate: a stressed young professional, the target viewer. The headline is direct and slightly uncomfortable. "Prepared talents get picked first. Unprepared ones get ignored." The CTA at the bottom redirects the discomfort into action. Designed to stop the scroll specifically because the image reflects back the viewer's own anxiety.</p>
+
+      <div class="cp-section-title">Unpopular Opinion</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-6.jpg">
+          <img src="orvalon-6.jpg" alt="Unpopular Opinion">
+        </div>
+      </div>
+      <p class="cp-p">A card-style layout on a white background, a deliberate departure from the full-bleed navy posts. The lighter format signals opinion content, not advertising. The three pain points (weak process, bad screening, no structure) are presented as a diagnosis, not a pitch. The CTA at the bottom offers the solution only after the problem has been clearly named. White-background posts with a bold headline and a real person consistently outperform brand-heavy posts for engagement on LinkedIn.</p>
+
+      <div class="cp-section-title">Most Platforms List. We Prepare.</div>
+      <div class="cp-gallery one">
+        <div class="cp-gallery-img sim-lightbox-trigger" data-dl="orvalon-7.jpg">
+          <img src="orvalon-7.jpg" alt="Most Platforms List. We Prepare.">
+        </div>
+      </div>
+      <p class="cp-p">A dartboard hitting the bullseye as the central visual. The metaphor does not need explaining. "Others give you options. We give you outcomes." is the positioning statement delivered in two lines. The all-navy palette and minimal copy give this post the most confidence of the seven. It is a brand statement, not a problem-solution narrative. Placed at week 2 of the content calendar after the problem-awareness pieces had established context for why outcomes matter.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="sec-label reveal">Writing</div>
+  <h2 class="sec-title reveal">Things I've<br>written down.</h2>
+  <p class="design-intro reveal">I write about what I build, what I observe, and the gaps I see in Nigerian education and tech. Mostly documenting the work as it happens.</p>
+
+  <div class="articles-list">
+
+    <article class="article-card reveal from-bottom">
+      <div class="article-meta">
+        <span class="article-pub">Substack &middot; Building in Africa Series</span>
+        <span class="article-date">Apr 15, 2026</span>
+      </div>
+      <h3 class="article-title">Why Nigerian Students Study Hard and Still Fail: What AI Can Actually Do About It.</h3>
+      <div class="article-tags">
+        <span class="ptag">EdTech</span>
+        <span class="ptag">AI</span>
+        <span class="ptag">Nigeria</span>
+        <span class="ptag">QUEVA</span>
+      </div>
+      <p class="article-excerpt">Every year, millions of Nigerian students sit for WASSCE and JAMB. In 2023, only 56.98% of candidates obtained credits in five subjects including English and Mathematics. Nearly half of all students who studied for months failed to meet the basic benchmark for university entry. These are not lazy students. Nigeria has some of the most hardworking, resourceful young people on the continent. The problem is systemic, not personal. The core issue is the absence of personalized feedback loops in the Nigerian learning environment. Students study into a void. They put in effort with no signal on whether that effort is going in the right direction. By the time the exam reveals the gap, it is too late. That is exactly the kind of problem AI is built to solve &mdash; and the observation that became the foundation of QUEVA.</p>
+      <div class="article-footer">
+        <a href="https://obinnaegenti.substack.com/p/why-nigerian-students-study-hard-831" target="_blank" class="btn-article">Read Full Article <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://obinnaegenti.substack.com" target="_blank" class="article-substack-link">More on Substack →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact">
