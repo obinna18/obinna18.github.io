@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orvalon Digital — Obinna Egenti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700&family=JetBrains Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#0D0D0D;color:#F0EDE8;
+  font-family:'Manrope',sans-serif;font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;border-radius:8px}
+button{cursor:pointer;background:none;border:none;font-family:inherit}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:64px;
+  background:rgba(13,13,13,0.96);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #222;
+}
+.nav-logo{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.25rem;font-weight:800;
+  color:#F0EDE8;letter-spacing:-.02em;
+}
+.nav-logo em{color:#3B82F6;font-style:normal}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  font-size:.75rem;font-weight:600;
+  color:#9A9690;letter-spacing:.08em;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:#F0EDE8}
+.nav-hire{
+  padding:8px 20px;border-radius:100px;
+  background:#3B82F6;color:#fff !important;
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  transition:background .2s,transform .2s;
+}
+.nav-hire:hover{background:#2563EB;transform:translateY(-1px)}
+@media(max-width:640px){
+  .nav-links{gap:16px}
+  .nav-links a:not(.nav-hire):not(.nav-back){display:none}
+  .nav-back{display:flex !important}
+}
+
+/* BACK BAR */
+.back-bar{
+  padding:14px 6%;
+  border-bottom:1px solid #222;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.78rem;font-weight:600;color:#9A9690;
+  font-family:'Bricolage Grotesque',sans-serif;
+  transition:color .2s;
+}
+.back-link:hover{color:#F0EDE8}
+.back-link svg{transition:transform .2s}
+.back-link:hover svg{transform:translateX(-3px)}
+
+/* HERO */
+.hero{
+  padding:80px 6% 64px;
+  border-bottom:1px solid #222;
+}
+.hero-eyebrow{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:.68rem;font-weight:700;
+  color:#3B82F6;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.hero-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(2.4rem,6vw,4.5rem);
+  font-weight:800;line-height:1.08;letter-spacing:-.03em;
+  color:#F0EDE8;
+  margin-bottom:20px;
+  max-width:760px;
+}
+.hero-title em{
+  font-style:italic;color:#3B82F6;
+}
+.hero-desc{
+  font-size:1.05rem;line-height:1.85;
+  color:#9A9690;max-width:620px;
+  margin-bottom:36px;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px}
+.tag{
+  padding:6px 14px;border-radius:100px;
+  border:1.5px solid #2A2A2A;
+  font-size:.7rem;font-weight:700;
+  color:#9A9690;letter-spacing:.06em;text-transform:uppercase;
+  transition:border-color .2s,color .2s;
+}
+.tag:hover{border-color:#3B82F6;color:#F0EDE8}
+.tag.live{border-color:#22C55E;color:#22C55E}
+
+/* STATS */
+.stats-row{
+  display:flex;gap:48px;flex-wrap:wrap;
+  padding:36px 0 0;
+  border-top:1px solid #222;
+}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat-num{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:2.4rem;font-weight:800;
+  color:#F0EDE8;letter-spacing:-.04em;
+  line-height:1;
+}
+.stat-num span{color:#3B82F6}
+.stat-lbl{
+  font-size:.68rem;font-weight:600;
+  color:#504C48;letter-spacing:.1em;text-transform:uppercase;
+}
+
+/* SECTION NAV */
+.section-nav{
+  display:flex;gap:0;
+  overflow-x:auto;
+  border-bottom:1px solid #222;
+  scrollbar-width:none;
+}
+.section-nav::-webkit-scrollbar{display:none}
+.snav-link{
+  padding:18px 28px;
+  font-size:.72rem;font-weight:700;
+  color:#504C48;letter-spacing:.08em;text-transform:uppercase;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.snav-link:hover{color:#F0EDE8;border-color:#3B82F6}
+@media(max-width:480px){.snav-link{padding:16px 18px}}
+
+/* CONTENT */
+.content{padding:0 6%}
+.section{
+  padding:72px 0;
+  border-bottom:1px solid #222;
+  max-width:860px;
+}
+.section:last-child{border-bottom:none}
+.sec-eyebrow{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:.62rem;font-weight:700;
+  color:#3B82F6;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.sec-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(1.6rem,3.5vw,2.5rem);
+  font-weight:800;line-height:1.15;letter-spacing:-.025em;
+  color:#F0EDE8;margin-bottom:28px;
+}
+.sec-title em{font-style:italic;color:#3B82F6}
+.body-p{
+  font-size:.97rem;line-height:2.0;
+  color:#9A9690;margin-bottom:20px;
+}
+.body-p:last-child{margin-bottom:0}
+.body-p strong{color:#F0EDE8;font-weight:700}
+
+/* SWATCH ROW */
+.swatch-row{display:flex;gap:16px;flex-wrap:wrap;margin:28px 0}
+.swatch{
+  display:flex;flex-direction:column;gap:10px;
+  min-width:160px;
+}
+.swatch-color{
+  height:60px;border-radius:8px;
+  border:1px solid #2A2A2A;
+}
+.swatch-name{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:.85rem;font-weight:700;color:#F0EDE8;
+}
+.swatch-hex{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;color:#504C48;letter-spacing:.08em;
+}
+.swatch-desc{font-size:.75rem;color:#9A9690;line-height:1.6;margin-top:2px}
+
+/* DESIGN GRID */
+.design-intro-img{
+  width:100%;border-radius:12px;
+  margin-bottom:32px;
+  border:1px solid #2A2A2A;
+}
+.designs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.design-item{
+  position:relative;
+  border-radius:10px;overflow:hidden;
+  border:1px solid #2A2A2A;
+  background:#141414;
+  cursor:pointer;
+  transition:transform .25s,border-color .25s;
+}
+.design-item:hover{transform:translateY(-4px);border-color:#3B82F6}
+.design-item img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.design-item-caption{
+  padding:14px 16px;
+  font-size:.75rem;font-weight:600;color:#9A9690;
+  letter-spacing:.04em;
+}
+.design-note{
+  font-size:.8rem;font-style:italic;
+  color:#504C48;margin-bottom:20px;
+}
+
+/* SINGLE DESIGN */
+.single-design{
+  border-radius:12px;overflow:hidden;
+  border:1px solid #2A2A2A;
+  margin:24px 0;
+  max-width:520px;
+}
+.single-design img{width:100%}
+
+/* PHASE BLOCK */
+.phase-block{
+  padding:24px;border-radius:12px;
+  background:#141414;border:1px solid #222;
+  margin-bottom:16px;
+}
+.phase-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;font-weight:500;color:#3B82F6;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.phase-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.05rem;font-weight:800;color:#F0EDE8;
+  margin-bottom:8px;
+}
+.phase-desc{font-size:.88rem;line-height:1.75;color:#9A9690}
+
+/* LIGHTBOX */
+.lightbox{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,0.94);
+  align-items:center;justify-content:center;
+  padding:24px;
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:min(520px,90vw);
+  max-height:90vh;
+  object-fit:contain;
+  border-radius:8px;
+}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;
+  font-size:1.6rem;color:#9A9690;
+  cursor:pointer;transition:color .2s;
+}
+.lightbox-close:hover{color:#F0EDE8}
+
+/* PAGINATION */
+.project-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:48px 6%;border-top:1px solid #222;
+  flex-wrap:wrap;gap:16px;
+}
+.pnav-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.8rem;font-weight:700;color:#9A9690;
+  font-family:'Bricolage Grotesque',sans-serif;
+  letter-spacing:.04em;
+  transition:color .2s;
+}
+.pnav-link:hover{color:#F0EDE8}
+.pnav-link svg{transition:transform .2s}
+.pnav-link.prev:hover svg{transform:translateX(-3px)}
+.pnav-link.next:hover svg{transform:translateX(3px)}
+
+/* FOOTER */
+footer{
+  padding:40px 6%;
+  border-top:1px solid #222;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.foot-logo{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.1rem;font-weight:800;
+  color:#F0EDE8;
+}
+.foot-logo em{color:#3B82F6;font-style:normal}
+.foot-links{display:flex;gap:20px}
+.foot-links a{
+  font-size:.72rem;font-weight:600;color:#504C48;
+  letter-spacing:.06em;text-transform:uppercase;
+  transition:color .2s;
+}
+.foot-links a:hover{color:#F0EDE8}
+.foot-copy{
+  font-size:.72rem;color:#504C48;
+  width:100%;font-family:'JetBrains Mono',monospace;
+  letter-spacing:.04em;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://obinna18.github.io/Design/index.html" class="nav-logo">OE<em>.</em></a>
+  <div class="nav-links">
+    <a href="https://obinna18.github.io" class="nav-back">&#x2190; Full Portfolio</a>
+    <a href="https://obinna18.github.io/Design/index.html">&#x2190; Design Portfolio</a>
+    <a href="mailto:preciousobinna260@gmail.com" class="nav-hire">Hire Me</a>
+  </div>
+</nav>
+
+<!-- BACK BAR -->
+<div class="back-bar">
+  <a href="https://obinna18.github.io/Design/index.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Design Portfolio
+  </a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Orvalon Digital &middot; Graphic Design Intern &middot; SIWES 2025</div>
+  <h1 class="hero-title">Orvalon Digital &mdash;<br><em>Social Media Design</em></h1>
+  <p class="hero-desc">Weekly social media content for a talent recruitment and HR digital agency. Deep blue and teal brand identity built to communicate Orvalon's positioning across Instagram and LinkedIn: sharp, bold, and conversion-focused.</p>
+  <div class="hero-tags">
+    <span class="tag live">Live Internship</span>
+    <span class="tag">Social Media Design</span>
+    <span class="tag">HR / Recruitment</span>
+    <span class="tag">Brand Identity</span>
+    <span class="tag">Canva</span>
+    <span class="tag">SIWES</span>
+  </div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num" style="color:#22C55E;font-size:1.4rem;letter-spacing:0">Active</div>
+      <div class="stat-lbl">Status</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7<span>+</span></div>
+      <div class="stat-lbl">Flyers (So Far)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Wk <span>1&ndash;2</span></div>
+      <div class="stat-lbl">Shown Here</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">May <span>2025</span></div>
+      <div class="stat-lbl">Started</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION NAV -->
+<div class="section-nav">
+  <a href="#overview" class="snav-link">Overview</a>
+  <a href="#context" class="snav-link">The Brief</a>
+  <a href="#brand" class="snav-link">Brand System</a>
+  <a href="#designs" class="snav-link">All Designs</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="sec-eyebrow">Project Overview</div>
+    <h2 class="sec-title">What I'm doing<br>at <em>Orvalon.</em></h2>
+    <p class="body-p">Orvalon Digital is a talent recruitment and HR-focused digital agency. Their social media content is built around one positioning: they bridge the gap between skilled candidates and the employers who need them. Every piece of content reinforces that idea from a different angle.</p>
+    <p class="body-p">As graphic design intern during my SIWES placement (started May 2025), I produce weekly social media content on the Orvalon brand system. This is a live, ongoing role. What is shown here represents weeks 1 and 2. More gets added as the internship continues.</p>
+    <p class="body-p">The visual language is consistent: deep blue and teal palette, bold typographic headlines, clean 3D-rendered or photographic supporting imagery, and a footer strip that anchors every post to the Orvalon identity across Instagram and LinkedIn.</p>
+    <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-4.jpg" alt="A Day in the Life — Orvalon Digital" class="design-intro-img" style="margin-top:32px">
+  </div>
+
+  <!-- THE BRIEF -->
+  <div class="section" id="context">
+    <div class="sec-eyebrow">The Brief</div>
+    <h2 class="sec-title">HR content that<br><em>earns the scroll.</em></h2>
+    <p class="body-p">Recruitment content on social media has a specific problem: it is either so corporate it looks like a press release, or so casual it loses the authority that makes a hiring brand credible. Orvalon needed to sit between those two failure modes. Professional enough to be trusted by employers. Direct enough to stop a job seeker mid-scroll.</p>
+    <p class="body-p">The content calendar I work from is structured around recurring content types: problem-awareness posts that name what HR managers and job seekers are already experiencing, contrast posts that show the difference between Orvalon and the status quo, and opinion posts that let the brand take a clear position. Each type serves a different audience moment. Someone scrolling at 11pm after a frustrating job application day needs a different hook than an HR manager reviewing their hiring process at noon.</p>
+    <p class="body-p">The design constraint is consistent: every post must read clearly as an Orvalon post before the viewer sees the footer. Brand recall at grid level, before a tap, before a caption. That is the standard every piece is held to.</p>
+  </div>
+
+  <!-- BRAND SYSTEM -->
+  <div class="section" id="brand">
+    <div class="sec-eyebrow">Brand System</div>
+    <h2 class="sec-title">Color, type,<br><em>and restraint.</em></h2>
+    <p class="body-p">The Orvalon brand system is built on a tight palette. Deep blue for authority. Teal for energy and differentiation. White for clarity. That combination runs through every piece without exception.</p>
+
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0A1172"></div>
+        <div class="swatch-name">Deep Blue</div>
+        <div class="swatch-hex">#0A1172</div>
+        <div class="swatch-desc">Dominant background. Authority, trust, premium positioning.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#00B4B4"></div>
+        <div class="swatch-name">Teal</div>
+        <div class="swatch-hex">#00B4B4</div>
+        <div class="swatch-desc">Accent color. Highlights, CTAs, headline emphasis.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;border-color:#333"></div>
+        <div class="swatch-name">White</div>
+        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-desc">Body text on dark, card backgrounds, breathing space.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8F4F8"></div>
+        <div class="swatch-name">Light Blue</div>
+        <div class="swatch-hex">#E8F4F8</div>
+        <div class="swatch-desc">Split-panel backgrounds. Contrast against deep blue zones.</div>
+      </div>
+    </div>
+
+    <p class="body-p"><strong>Typography:</strong> Bold condensed display type for all headlines. Every headline is written and sized to be readable at Instagram grid thumbnail scale before the viewer taps. If it cannot be read at thumbnail, it is resized or rewritten. Supporting copy uses a lighter weight of the same typeface for clean hierarchy without visual noise.</p>
+    <p class="body-p"><strong>Imagery:</strong> The posts alternate between 3D-rendered characters and real photography depending on content type. 3D renders work for problem-framing content where you want emotional distance from the situation. Real photography works when the goal is emotional identification: the viewer sees themselves in the image. That switch is intentional, not arbitrary.</p>
+    <p class="body-p"><strong>Footer strip:</strong> Every single post ends with the same Orvalon footer: logo, social handles, website URL. Same position, same layout, every time. This is non-negotiable on brand content. Consistency at the footer level builds recognition even when individual post formats vary.</p>
+  </div>
+
+  <!-- ALL DESIGNS -->
+  <div class="section" id="designs">
+    <div class="sec-eyebrow">All Designs</div>
+    <h2 class="sec-title">Weeks 1 and 2 &mdash;<br><em>7 pieces.</em></h2>
+    <p class="design-note">Tap any image to expand. This section grows as the internship continues.</p>
+
+    <!-- 1 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">01 &mdash; Expectation vs Reality</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-1.jpg" alt="Expectation vs Reality" class="lightbox-trigger">
+    </div>
+    <p class="body-p">A split-panel format contrasting what job seekers expect after learning a skill versus the reality they face when applying. The left panel is clean and confident. The right panel shows rejected applications and experience demands stacking up. Orvalon's tagline at the bottom resolves the tension: "Orvalon bridges that Gap." Brief, clear, and immediately relatable to anyone who has graduated and found themselves stuck in the entry-level paradox.</p>
+
+    <!-- 2 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">02 &mdash; Speed Without Quality Is Useless</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-2.jpg" alt="Speed Without Quality Is Useless" class="lightbox-trigger">
+    </div>
+    <p class="body-p">Positioned against the perception that recruitment should just be fast. The visual is a 3D character holding a card that lists the cost of rushing: 200 CVs reviewed, 3 weeks wasted, 1 wrong hire. Turning a process failure into a concrete number problem. Numbers are harder to argue with than abstract claims about quality. The CTA at the bottom reframes speed as the wrong metric entirely.</p>
+
+    <!-- 3 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">03 &mdash; You Can Only Pick One</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-3.jpg" alt="You Can Only Pick One" class="lightbox-trigger">
+    </div>
+    <p class="body-p">A direct comparison frame: a stack of 100 unvetted CVs (Option A) versus 5 pre-vetted candidates ready to work (Option B). The A/B choice format forces a decision before the viewer even reads the copy. It is one of the cleanest content structures for demonstrating a value proposition because the audience makes the argument for you.</p>
+
+    <!-- 4 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">04 &mdash; A Day in the Life</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-4.jpg" alt="A Day in the Life" class="lightbox-trigger">
+    </div>
+    <p class="body-p">Split photography: a stressed HR manager drowning in CVs on the left, a relaxed HR manager reviewing 5 vetted profiles on the right. The emotional contrast does most of the work. Real people in real contexts land differently from 3D renders. This piece was built to reach HR professionals directly. "Same role. Different experience." captures the message in four words.</p>
+
+    <!-- 5 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">05 &mdash; Opportunities Don't Wait</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-5.jpg" alt="Opportunities Don't Wait" class="lightbox-trigger">
+    </div>
+    <p class="body-p">Speaking to the talent side of Orvalon's audience. The imagery is deliberate: a stressed young professional, the exact target viewer. "Prepared talents get picked first. Unprepared ones get ignored." The CTA redirects discomfort into action. Designed to stop the scroll specifically because the image reflects back the viewer's own anxiety.</p>
+
+    <!-- 6 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">06 &mdash; Unpopular Opinion</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-6.jpg" alt="Unpopular Opinion" class="lightbox-trigger">
+    </div>
+    <p class="body-p">A card-style layout on a white background, a deliberate departure from the full-bleed navy posts. The lighter format signals opinion content, not advertising. The three pain points — weak process, bad screening, no structure — are presented as a diagnosis, not a pitch. The CTA offers the solution only after the problem has been clearly named. White-background posts with a bold headline and a real person consistently outperform brand-heavy posts for engagement on LinkedIn.</p>
+
+    <!-- 7 -->
+    <div class="sec-eyebrow" style="margin-bottom:12px;margin-top:40px">07 &mdash; Most Platforms List. We Prepare.</div>
+    <div class="single-design">
+      <img src="https://raw.githubusercontent.com/obinna18/Design/main/orvalon-7.jpg" alt="Most Platforms List. We Prepare." class="lightbox-trigger">
+    </div>
+    <p class="body-p">A dartboard hitting the bullseye as the central visual. The metaphor does not need explaining. "Others give you options. We give you outcomes." is the positioning statement in two lines. The all-navy palette and minimal copy give this post the most confidence of the seven. It is a brand statement, not a problem-solution narrative. Placed after the problem-awareness pieces had established context for why outcomes matter.</p>
+
+    <p class="body-p" style="margin-top:40px;padding:20px 24px;background:#141414;border-radius:10px;border:1px solid #222;color:#504C48;font-size:.85rem;">
+      <strong style="color:#3B82F6">This page is updated as the internship continues.</strong> More work will be added here week by week through the SIWES placement period.
+    </p>
+  </div>
+
+</div><!-- end content -->
+
+<!-- PROJECT NAV -->
+<div class="project-nav">
+  <a href="https://obinna18.github.io/Design/freelance.html" class="pnav-link prev">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Previous Project
+  </a>
+  <a href="https://obinna18.github.io/Design/index.html" class="pnav-link">
+    All Projects
+  </a>
+  <a href="https://obinna18.github.io/Design/sim.html" class="pnav-link next">
+    Next Project
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 4L14 10L8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">OE<em>.</em></div>
+  <div class="foot-links">
+    <a href="https://obinna18.github.io/Design/index.html">Design Portfolio</a>
+    <a href="https://obinna18.github.io">Full Portfolio</a>
+    <a href="mailto:preciousobinna260@gmail.com">Email</a>
+  </div>
+  <div class="foot-copy">Obinna Egenti &copy; 2025</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+// Lightbox
+document.querySelectorAll('.lightbox-trigger').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
